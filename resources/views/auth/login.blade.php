@@ -1,0 +1,1 @@
+@extends('tokostar.auth.memberlogin')
