@@ -64,7 +64,7 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        //$this->middleware('admin', ['except' => ['showProduct', 'showRecentProduct']]);
+        $this->middleware('admin', ['except' => ['showProduct', 'showRecentProduct']]);
     }
 
 
