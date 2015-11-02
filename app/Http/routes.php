@@ -18,6 +18,10 @@ Route::get('about', 'MemberController@showAbout');
 Route::get('contact', 'MemberController@getContact');
 Route::post('contact', 'MemberController@postContact');
 
+Route::get('/info', function() {
+	return phpinfo();
+});
+
 // Authentication routes
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::post('login', 'Auth\AuthController@postLogin');
