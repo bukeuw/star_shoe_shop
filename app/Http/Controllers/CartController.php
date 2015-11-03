@@ -32,6 +32,23 @@ class CartController extends Controller
     }
 
     /**
+     * Get the total price of all item in cart
+     *
+     * @param \App\CartItem $cartItems
+     * @return int
+     */
+    protected function getTotalPrice(CartItem $cartItems)
+    {
+        $total = 0;
+
+        foreach($cartItems as $item) {
+            $total += ($item->product->price * $item->qty);
+        }
+
+        return $total;
+    }
+
+    /**
      * Add given product id to user cart
      * 
      * @param int $productId
@@ -94,6 +111,20 @@ class CartController extends Controller
         return redirect('/cart');
     }
 
+    public function getCheckout()
+    {
+        $cart = $this->getUserCart();
+
+        if(count($cartItems) <= 0) {
+            return redirect('/cart');
+        }
+
+        $cartItems = $cart->cartItems;
+        $total = $this->getTotalPrice();
+
+        return view('tokostar.checkout', compact('cartItems', 'total'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -104,10 +135,7 @@ class CartController extends Controller
         $cart = $this->getUserCart();
 
         $cartItems = $cart->cartItems;
-        $total = 0;
-        foreach($cartItems as $item) {
-            $total += ($item->product->price * $item->qty);
-        }
+        $total = $this->getTotalPrice();
 
         return view('tokostar.cart', compact('cartItems', 'total'));
     }
