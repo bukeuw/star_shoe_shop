@@ -49,6 +49,18 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
+            'g-recaptcha-response' => 'required'
+        ], [
+            'name.required' => 'Nama tidak boleh kosong',
+            'name.max' => 'Nama tidak boleh lebih dari 255 karakter',
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Silahkan masukan email yang valid',
+            'email.max' => 'Email tidak boleh lebih dari 255 karakter',
+            'email.unique' => 'Email sudah ada silahkan gunakan emai lain',
+            'password.required' => 'Password tidak boleh kosong',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai',
+            'password.min' => 'Password minimal 6 karakter',
+            'g-recaptcha-response.required' => 'Silahkan verifikasi captch terlebih dahulu'
         ]);
     }
 
