@@ -17,6 +17,44 @@ class AdminController extends Controller
     protected $redirectAfterLogout = '/admin/login';
 
     /**
+     * Validation rule for admin login page and creating new admin account
+     * 
+     * @var array
+     */
+    protected $rules = [
+        'create' => [
+            'name' => 'required'
+            'email' => 'required|email',
+            'password' => 'required'
+        ],
+        'login' => [
+            'email' => 'required|email',
+            'password' => 'required',
+            'g-recaptcha-response' => 'required'
+        ]
+    ];
+
+    /**
+     * Validation messages for admin login page and creating admin account
+     * 
+     * @var array
+     */
+    protected $messages = [
+        'create' => [
+            'name.required' => 'Nama tidak boleh kosong'
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Silhkan masukan email yang valid',
+            'password.required' => 'Password tidak boleh dikosongkan'
+        ],
+        'login' => [
+            'email.required' => 'Nama tidak boleh kosong',
+            'email.email' => 'Silahkan masukan email yang valid',
+            'password.required' => 'Password tidak boleh kosong',
+            'g-recaptcha-response.required' => 'Silahkan verifikasi captcha terlebih dahulu'
+        ]
+    ];
+
+    /**
      * Create a new authentication controller instance.
      *
      * @return void
@@ -34,11 +72,7 @@ class AdminController extends Controller
     }
 
     public function postLogin(Request $request) {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-            'g-recaptcha-response' => 'required',
-        ]);
+        $this->validate($request, $this->rules['login'], $this->messages['login']);
 
         // If reCaptcha validation fail, redirect user back to login form
         $recaptcha = $this->getreCaptchaValidation($request);
