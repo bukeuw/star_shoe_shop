@@ -32,6 +32,7 @@ Route::get('cart', 'CartController@index');
 Route::get('cart/addItem/{productId}', 'CartController@addItem');
 Route::post('cart/updateItem/{id}', 'CartController@updateItem');
 Route::get('cart/removeItem/{id}', 'CartController@removeItem');
+Route::get('cart/checkout', 'CartController@getCheckout');
 Route::resource('order', 'OrderController');
 
 // Registration routes
@@ -40,14 +41,18 @@ Route::post('register', 'Auth\AuthController@postRegister');
 
 // Admin routes
 Route::group(['prefix' => 'admin'], function() {
+	
+	Route::get('/', 'AdminController@index');
 
 	Route::get('login', 'AdminController@getLogin');
 	Route::post('login', 'AdminController@postLogin');
 	Route::get('logout', 'AdminController@getLogout');
-	Route::get('/', 'AdminController@index');
-	Route::resource('product', 'ProductController');
+
 	Route::get('order', 'OrderController@getOrderList');
 	Route::get('invoice', 'AdminController@getInvoice');
 	Route::get('manage', 'AdminController@getAdminList');
+
+	Route::resource('product', 'ProductController');
+	Route::resource('category', 'CategoryController');
 
 });
