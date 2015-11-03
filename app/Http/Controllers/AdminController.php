@@ -23,7 +23,7 @@ class AdminController extends Controller
      */
     protected $rules = [
         'create' => [
-            'name' => 'required'
+            'name' => 'required',
             'email' => 'required|email',
             'password' => 'required'
         ],
@@ -41,7 +41,7 @@ class AdminController extends Controller
      */
     protected $messages = [
         'create' => [
-            'name.required' => 'Nama tidak boleh kosong'
+            'name.required' => 'Nama tidak boleh kosong',
             'email.required' => 'Email tidak boleh kosong',
             'email.email' => 'Silhkan masukan email yang valid',
             'password.required' => 'Password tidak boleh dikosongkan'
