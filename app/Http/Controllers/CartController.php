@@ -8,10 +8,10 @@ use App\CartItem;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Collection;
 
 class CartController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -34,10 +34,10 @@ class CartController extends Controller
     /**
      * Get the total price of all item in cart
      *
-     * @param \App\CartItem $cartItems
+     * @param \Illuminate\Database\Eloquent\Collection $cartItems
      * @return int
      */
-    protected function getTotalPrice(CartItem $cartItems)
+    protected function getTotalPrice(Collection $cartItems)
     {
         $total = 0;
 
@@ -113,16 +113,23 @@ class CartController extends Controller
 
     public function getCheckout()
     {
+        $user = \Auth::user();
         $cart = $this->getUserCart();
 
+        $cartItems = $cart->cartItems;
+        
         if(count($cartItems) <= 0) {
             return redirect('/cart');
         }
 
-        $cartItems = $cart->cartItems;
-        $total = $this->getTotalPrice();
+        if(!$user->profile) {
+            \Session::put('needProfile', 'yes');
+            return redirect('/member/profile');
+        }
 
-        return view('tokostar.checkout', compact('cartItems', 'total'));
+        $total = $this->getTotalPrice($cartItems);
+
+        return view('tokostar.checkout', compact('user', 'cartItems', 'total'));
     }
 
     /**
@@ -135,8 +142,18 @@ class CartController extends Controller
         $cart = $this->getUserCart();
 
         $cartItems = $cart->cartItems;
-        $total = $this->getTotalPrice();
+        $total = $this->getTotalPrice($cartItems);
 
         return view('tokostar.cart', compact('cartItems', 'total'));
+    }
+
+    public function paymentBank(Request $request)
+    {
+        dd($request->all());
+    }
+
+    public function paymentCreditCard(Request $request)
+    {
+        dd($request->all());
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Validator;
 use App\Contact;
+use App\Profile;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,21 +14,49 @@ class MemberController extends Controller
 {
 
     protected $rules = [
-        'name' => 'required|min:3',
-        'phone' => 'requuired|max:15',
-        'email' => 'required|email',
-        'message' => 'required|max:255'
+        'contact' => [
+            'name' => 'required|min:3',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'message' => 'required|max:255'
+        ],
+        'profile' => [
+            'full_name' => 'required|min:3',
+            'phone_number' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'province' => 'required',
+            'postal_code' => 'required|digits:5',
+        ]
     ];
 
     protected $messages = [
-        'name.required' => 'Nama harus disi',
-        'name.min' => 'Nama minimal 3 karakter',
-        'phone.required' => 'No telepon harus diisi',
-        'email.required' => 'Email harus diisi',
-        'email.email' => 'Silahkan masukan email yang valid',
-        'message.required' => 'Pesan tidak boleh kosong',
-        'message.max' => 'Pesan tidak boleh melebihi 255 karakter'
+        'contact' => [
+            'name.required' => 'Nama harus disi',
+            'name.min' => 'Nama minimal 3 karakter',
+            'phone.required' => 'No telepon harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Silahkan masukan email yang valid',
+            'message.required' => 'Pesan tidak boleh kosong',
+            'message.max' => 'Pesan tidak boleh melebihi 255 karakter'
+        ],
+        'profile' => [
+            'full_name.required' => 'Nama lengkap harus diisi',
+            'full_name.min' => 'Nama lengkap tidak boleh kurang dari 3 huruf',
+            'phone_number.required' => 'No Telepon harus diisi',
+            'address.required' => 'Alamat harus diisi',
+            'city.required' => 'Nama kota harus diisi',
+            'province.required' => 'Nama provinsi harus diisi',
+            'postal_code.required' => 'Kode pos harus diisi',
+            'postal_code.digits' => 'Kode pos hanya boleh diisi dengan angka',
+            'postal_code.max' => 'Kode pos tidak valid'
+        ]
     ];
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['showAbout', 'getContact', 'postContact']]);
+    }
 
     /**
      * Show the about page
@@ -56,11 +86,11 @@ class MemberController extends Controller
      */
     public function postContact(Request $request)
     {
-        $validator = Validator::make($request->all(), $rules, $message);
+        $validator = Validator::make($request->all(), $this->rules['contact'], $this->messages['contact']);
 
-        if($validator->fail()) {
+        if($validator->fails()) {
             return redirect('/contact')
-                        ->withError($validator)
+                        ->withErrors($validator)
                         ->withInput();
         }
 
@@ -74,6 +104,56 @@ class MemberController extends Controller
         Session::flash('Pesan Berhasil dikirim');
 
         return redirect('/contact');
+    }
+
+    public function getProfile()
+    {
+        $actions = 'Simpan';
+        $submitTo = '/member/profile';
+
+        if(Auth::user()->profile) {
+            $actions = 'Update';
+            $submitTo = '/member/profile/' . Auth::user()->profile->id;
+        }
+
+        return view('tokostar.profile', compact('actions', 'submitTo'));
+    }
+
+    public function postProfile(Request $request)
+    {
+        $validator = Validator::make($request->all(), $this->rules['profile'], $this->messages['profile']);
+
+        if($validator->fails()) {
+            return redirect('/member/profile')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        Auth::user()->profile()->create($request->all());
+
+        if(\Session::has('needProfile')) {
+            \Session::forget('needProfile');
+            return redirect('/cart/checkout');
+        }
+
+        return redirect('/member/profile');
+    }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), $this->rules['profile'], $this->messages['profile']);
+
+        if($validator->fails()) {
+            return redirect('/member/profile')
+                        ->withError($validator)
+                        ->withInput();
+        }
+
+        $profile = Profile::findOrFail($id);
+
+        $profile->update($request->all());
+
+        return redirect('/member/profile');
     }
 
     /**

@@ -191,6 +191,13 @@ class AdminController extends Controller
         ]);
     }
 
+    public function getAdminList()
+    {
+        $admin = User::where('is_admin', true)->get();
+
+        return view('tokostar.admin.adminlist');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

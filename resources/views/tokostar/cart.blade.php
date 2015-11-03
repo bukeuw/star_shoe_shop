@@ -4,7 +4,7 @@
 
 @section('page-content')
 	<div class="row">
-		<div class="col-sm-12 page-header">
+		<div class="col-md-12 page-header">
 			<h1>Keranjang Belanja</h1>
 		</div>
 		<div class="col-md-9">
@@ -55,7 +55,7 @@
 									</tfooter>
 								</table>
 							</div>
-							<a href="#" class="btn btn-default">Check Out</a>
+							<a href="/cart/checkout" class="btn btn-default">Check Out</a>
 						@else
 							<p>Tidak ada item dalam keranjang Anda</p>
 							<a href="/product" class="btn btn-default">Lanjut Belanja</a>

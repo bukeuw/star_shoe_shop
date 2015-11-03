@@ -28,11 +28,19 @@ Route::post('login', 'Auth\AuthController@postLogin');
 Route::get('logout', 'Auth\AuthController@getLogout');
 
 // member area
+Route::get('member/profile', 'MemberController@getProfile');
+Route::post('member/profile', 'MemberController@postProfile');
+Route::post('member/profile/{id}', 'MemberController@updateProfile');
+
 Route::get('cart', 'CartController@index');
 Route::get('cart/addItem/{productId}', 'CartController@addItem');
 Route::post('cart/updateItem/{id}', 'CartController@updateItem');
 Route::get('cart/removeItem/{id}', 'CartController@removeItem');
 Route::get('cart/checkout', 'CartController@getCheckout');
+
+Route::post('cart/payment/bank-transfer', 'CartController@paymentBank');
+Route::post('cart/payment/creditcard', 'CartController@paymentCreditCard');
+
 Route::resource('order', 'OrderController');
 
 // Registration routes
