@@ -1,6 +1,6 @@
 @extends('layouts.userpage')
 
-@section('title', 'Keranjang Belanja')
+@section('title', 'Checkout')
 
 @section('page-content')
 	<div class="row">
