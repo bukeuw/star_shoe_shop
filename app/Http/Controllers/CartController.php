@@ -162,6 +162,8 @@ class CartController extends Controller
 
         $this->handleCreditCardPayment($token, ['email' => $user->email]);
 
+        \Session::flash('message', 'Pembayaran berhasil');
+
         return redirect('/');
     }
 }
