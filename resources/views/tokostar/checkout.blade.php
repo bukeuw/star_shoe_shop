@@ -47,10 +47,26 @@
 									</tfooter>
 								</table>
 							</div>
+							<form action="/cart/payment/creditcard" method="POST">
+								<script
+									src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+									data-key="{{ env('STRIPE_KEY') }}"
+									data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+									data-name="Toko Star"
+									data-email="{{ $user->email }}"
+									data-description="Pembelian Produk Tgl {{ \Carbon\Carbon::now()->toDateString() }}"
+									data-label="Bayar Dengan kartu Kredit"
+									data-currency="IDR"
+									data-amount="{{ $total }}00"
+									data-locale="auto">
+								</script>
+							</form>
 							<hr>
-							<div class="col-sm-6">
+							<div>
 								<form action="/cart/payment/bank-transfer" method="POST">
 									{!! csrf_field() !!}
+
+									<legend>Transfer Bank</legend>
 
 									<div class="form-group">
 										<label for="bank" class="control-label">Bank</label>
@@ -84,27 +100,11 @@
 									</div>
 
 									<div class="form-group">
-										<span class="help-block">BCA transfer ke: 01480630479 atas nama Dani Cheng</span>
-										<span class="help-block">BRI transfer ke: 02240485148 atas nama Dani Cheng</span>
-										<span class="help-block">BNI transfer ke: 00924247668 atas nama Dani Cheng</span>
+										<span class="help-block">BCA transfer ke: 01480630479 atas nama Dany Cheng</span>
+										<span class="help-block">BRI transfer ke: 02240485148 atas nama Dany Cheng</span>
+										<span class="help-block">BNI transfer ke: 00924247668 atas nama Dany Cheng</span>
 									</div>
 
-								</form>
-							</div>
-							<div class="col-sm-6">
-								<form action="/cart/payment/creditcard" method="POST">
-									<script
-										src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-										data-key="{{ env('STRIPE_KEY') }}"
-										data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-										data-name="Toko Star"
-										data-email="{{ $user->email }}"
-										data-description="Pembelian Produk Tgl {{ \Carbon\Carbon::now()->toDateString() }}"
-										data-label="Bayar Dengan kartu Kredit"
-										data-currency="IDR"
-										data-amount="{{ $total }}00"
-										data-locale="auto">
-									</script>
 								</form>
 							</div>
 						@endif
