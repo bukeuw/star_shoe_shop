@@ -7,11 +7,14 @@ use App\Cart;
 use App\CartItem;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Utilities\PaymentUtil;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Collection;
 
 class CartController extends Controller
 {
+    use PaymentUtil;
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -154,6 +157,11 @@ class CartController extends Controller
 
     public function paymentCreditCard(Request $request)
     {
-        dd($request->all());
+        $user = \Auth::user();
+        $token = $request->input('stripeToken');
+
+        $this->handleCreditCardPayment($token, ['email' => $user->email]);
+
+        return redirect('/');
     }
 }
