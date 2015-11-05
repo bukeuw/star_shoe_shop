@@ -49,7 +49,7 @@
 							</div>
 							<div class="col-sm-8">
 								<p class="help-block">
-									Lupa Password? <a href="/password/reset">Reset Password</a>
+									Lupa Password? <a href="/password/email">Reset Password</a>
 								</p>
 							</div>
 						</div>
