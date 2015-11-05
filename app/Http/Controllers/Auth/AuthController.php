@@ -15,6 +15,7 @@ class AuthController extends Controller
 {
     protected $loginPath = '/login';
     protected $redirectPath = '/';
+    protected $recaptcha_error;
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +43,7 @@ class AuthController extends Controller
     public function authenticate(MemberLoginRequest $request)
     {
         if(!$this->getreCaptchaValidation($request)) {
-            return $this->sendreCaptchaErrorResponse();
+            return $this->sendreCaptchaErrorResponse($request);
         }
 
         return $this->postLogin($request);
@@ -102,6 +103,7 @@ class AuthController extends Controller
             ->withInput($request->only($this->loginUsername(), 'remember'))
             ->withErrors([
                 $this->loginUsername() => 'Invalid captcha',
+                'error_code' => $this->recaptcha_error
             ]);
     }
 
@@ -117,6 +119,10 @@ class AuthController extends Controller
         $recaptcha = new ReCaptcha(env('RECAPTCHA_SECRET'));
 
         $response = $recaptcha->verify($recaptchaResponse, $request->ip());
+
+        if(!$response->isSuccess()) {
+            $this->recaptcha_error = $response->getErrorCodes();
+        }
 
         return $response->isSuccess();
     }
