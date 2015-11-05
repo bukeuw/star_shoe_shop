@@ -26,7 +26,10 @@ Route::get('/info', function() {
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::post('login', 'Auth\AuthController@authenticate');
 Route::get('logout', 'Auth\AuthController@getLogout');
-Route::get('password/reset', 'Auth\PasswordController@getReset');
+
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@PostEmail');
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@PostReset');
 
 // member area
