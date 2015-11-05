@@ -4,6 +4,7 @@ namespace App\Utilities;
 
 use Auth;
 use App\Product;
+use App\CartItem;
 use Laravel\Cashier\StripeGateway;
 use Stripe\Invoice as StripeInvoice;
 use Laravel\Cashier\Contracts\Billable;
