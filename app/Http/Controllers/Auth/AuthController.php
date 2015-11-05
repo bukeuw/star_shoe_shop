@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use ReCaptcha\ReCaptcha;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MemberLoginRequest;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -35,6 +37,15 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
+    }
+
+    public function authenticate(MemberLoginRequest $request)
+    {
+        if(!$this->getreCaptchaValidation($request)) {
+            return $this->sendreCaptchaErrorResponse();
+        }
+
+        return $this->postLogin($request);
     }
 
     /**
@@ -101,22 +112,12 @@ class AuthController extends Controller
      * @return bool
      */
     protected function getreCaptchaValidation(Request $request) {
-        if($request->has('g-recaptcha-response')) {
-            $captcha = $request->input('g-recaptcha-response');
+        $recaptchaResponse = $request->input('g-recaptcha-response');
 
-            $gjson = file_get_contents(
-                "https://www.google.com/recaptcha/api/siteverify?" .
-                "secret=" . env('RECAPTCHA_SECRET') . 
-                "&response=" . $captcha . 
-                "&remoteip=" . $request->ip()
-            );
-            $response = json_decode($gjson, true);
+        $recaptcha = new ReCaptcha(env('RECAPTCHA_SECRET'));
 
-            if($response['success'] == true) {
-              return true;
-            }
-        }
+        $response = $recaptcha->verify($recaptchaResponse, $request->ip());
 
-        return false;
+        return $response->isSuccess();
     }
 }
