@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Login')
+@section('title', 'Reset Password')
 
 @section('content')
 	<div class="container form-container row">
