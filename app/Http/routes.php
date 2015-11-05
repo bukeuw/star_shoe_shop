@@ -26,6 +26,8 @@ Route::get('/info', function() {
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::post('login', 'Auth\AuthController@authenticate');
 Route::get('logout', 'Auth\AuthController@getLogout');
+Route::get('password/reset', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@PostReset');
 
 // member area
 Route::get('member/profile', 'MemberController@getProfile');
