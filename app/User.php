@@ -51,4 +51,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasOne('App\Cart');
     }
+
+    public function transactions()
+    {
+        return $this->hasMany('App\Transaction');
+    }
 }
