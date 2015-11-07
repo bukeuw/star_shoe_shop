@@ -14,10 +14,10 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
-	    $table->integer('user_id');
-	    $table->string('payment_method');
-	    $table->decimal('total', 8, 0);
-	    $table->boolean('comfirmed')->default(false);
+    	    $table->integer('user_id');
+    	    $table->string('payment_method');
+    	    $table->decimal('total', 8, 0);
+    	    $table->boolean('comfirmed')->default(false);
             $table->timestamps();
         });
     }
