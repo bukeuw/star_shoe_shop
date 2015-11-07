@@ -3,12 +3,12 @@
 namespace App\Utilities;
 
 use Auth;
+use App\Payment;
 use App\Product;
 use App\CartItem;
+use App\TransactionDetail;
 use Laravel\Cashier\StripeGateway;
-use Stripe\Invoice as StripeInvoice;
 use Laravel\Cashier\Contracts\Billable;
-use Stripe\InvoiceItem as StripeInvoiceItem;
 
 trait PaymentUtil
 {
@@ -22,24 +22,41 @@ trait PaymentUtil
 		return Auth::user();
 	}
 
+	protected function getStripeGateway()
+	{
+		$billable = $this->getBillable();
+		
+		return new StripeGateway($billable);
+	}
+
 	/**
 	 * Create invoice for each item in user cart
 	 * 
-	 * @param  \Billable $user
+	 * @param  string $paymentMethod
 	 * @return \Stripe\Invoice
 	 */
-	protected function createInvoice(Billable $user)
+	protected function createInvoice($paymentMethod)
 	{
-		//$invoice = StripeInvoice::create(['customer' => $user->getStripeId()], $user->getStripeKey());
+		$user = $this->getBillable();
 
-		foreach($user->cart->cartItems as $cartItem) {
-			StripeInvoiceItem::create([
-				'customer' => $user->getStripeId(), 
-				'amount' => ($cartItem->product->price * $cartItem->qty) * 100,
-				'currency' => 'idr',
-				'description' => $cartItem->product->qty . ' ' . $cartItem->product->unit . ' ' . $cartItem->product->name],
-				$user->getStripeKey()
-			);
+		$cart = $this->getUserCart();
+        $cartItems = $cart->cartItems;
+        $total = $this->getTotalPrice($cartItems);
+
+		$transaction = new Transaction();
+        $transaction->user_id = $user->id;
+        $transaction->total_pay = $total;
+        $transaction->payment_method = $paymentMethod;
+        $transaction->save();
+
+		foreach($cartItems as $cartItem) {
+			TransactionDetail::create([
+				'transaction_id' => $transaction->id,
+				'product_id' => $cartItem->product->id,
+				'quantity' => $cartItem->qty,
+			]);
+
+			Product::find($cartItem->product->id)->decrement('stock', 5);
 			
 			CartItem::destroy($cartItem->id);
 		}
@@ -48,22 +65,26 @@ trait PaymentUtil
 	}
 
 	protected function handleCreditCardPayment($token, $options = [])
-	{
-		$billable = $this->getBillable();
-		
-		if(!$billable->stripeIsActive()) {
-			$billable->subscription('member')->create($token, $options);
+	{	
+		$user = $this->getBillable();
+		$stripeGateway = $this->getStripeGateway();
+
+		if($user->stripeIsActive() && $user->hasStripeId()) {
+			$customer = $stripeGateway->createStripeCustomer($token, $options);
+		} elseif (! is_null($token)) {
+			$stripeGateway->updateCard($token);
 		}
 
-		$this->createInvoice($billable);
+		$customer = $stripeGateway->getStripeCustomer($customer->id);
+		$stripeGateway->updateLocalStripeData($customer);
+
+		$this->createInvoice('Kartu Kredit');
 	}
 
 	protected function handleBankTransferPayment($options = [])
 	{
-		if(!$billable->stripeIsActive()) {
-			$billable->subscription('member')->create('', $options);
-		}
+		$this->createInvoice('Transfer Bank');
 
-		$this->createInvoice($billable);
+		Payment::create($options);
 	}
 }

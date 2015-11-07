@@ -152,7 +152,11 @@ class CartController extends Controller
 
     public function paymentBank(Request $request)
     {
-        dd($request->all());
+        $this->handleBankTransferPayment($request->all());
+
+        \Session::flash('message', 'Pembayaran berhasil');
+
+        return redirect('/');
     }
 
     public function paymentCreditCard(Request $request)
