@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-	$fillable = ['user_id', 'payment_method', 'total_pay', 'confirmed'];
-	$dates = ['created_at'];
+	protected $fillable = ['user_id', 'payment_method', 'total_pay', 'confirmed'];
+	protected $dates = ['created_at'];
 
 	public function user()
 	{
