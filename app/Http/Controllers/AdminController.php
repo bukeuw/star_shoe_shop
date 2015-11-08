@@ -248,7 +248,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->rules['create'], $this->message['create']);
+        $this->validate($request, $this->rules['create'], $this->messages['create']);
 
         User::create([
             'name' => $request->input('name'),
