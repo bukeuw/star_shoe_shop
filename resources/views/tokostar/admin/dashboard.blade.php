@@ -56,15 +56,15 @@
 		var balance = [
 		@foreach($transactions as $transaction)
 			[
+				{{ $transaction->id }},
 				{{ $transaction->total }},
-				"{{ $transaction->created_at->format('j M F') }}"
 			],
 		@endforeach
 		];
 
 		var plot = $.plot("#placeholder", [{
 			data: balance,
-			label: "Penjualan"
+			label: "{{ $transaction->created_at->format('j M F') }}"
 		}], {
 			series: {
 				lines: {
