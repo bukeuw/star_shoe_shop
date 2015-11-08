@@ -7,7 +7,7 @@
 	@include('layouts.partials.messagebag')
 
 	<h1 class="content-header">Produk</h1>
-	@if (count($products) > 0)
+	@if (count($admins) > 0)
 		<a href="/admin/add" class="btn btn-primary">
 			<i class="fa fa-plus"></i> Tambah Produk
 		</a>
