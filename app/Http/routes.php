@@ -66,6 +66,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('manage', 'AdminController@getAdminList');
 	Route::get('add', 'AdminController@create');
 	Route::post('/', 'AdminController@store');
+	Route::patch('{id}/edit', 'AdminController@edit');
 	Route::patch('{id}', 'AdminController@update');
 	Route::delete('{id}', 'AdminController@destroy');
 
