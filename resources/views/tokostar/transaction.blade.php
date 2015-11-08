@@ -1,4 +1,4 @@
-@extends('layouts.adminpage')
+@extends('layouts.userpage')
 
 @section('title', 'Daftar Transaksi')
 
@@ -23,11 +23,11 @@
 				@foreach (Auth::user()->transactions as $transaction)
 					<tr>
 						<td>{{ $transaction->created_at->toDateString() }}</td>
-						<td>{{ $transaction->total }}</td>
+						<td>Rp. {{ $transaction->total }}</td>
 						<td>{{ $transaction->payment_method }}</td>
 						<td>{{ $transaction->confirmed? 'Sukses':'Pending' }}</td>
 						<td>
-							<a href="/member/{{ $transaction->id }}" class="btn btn-default">Lihat Detail</a>
+							<a href="/member/transaction/{{ $transaction->id }}" class="btn btn-default">Lihat Detail</a>
 						</td>
 					</tr>
 				@endforeach

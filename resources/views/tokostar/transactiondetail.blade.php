@@ -1,4 +1,4 @@
-@extends('layouts.adminpage')
+@extends('layouts.userpage')
 
 @section('title', 'Daftar Transaksi')
 
