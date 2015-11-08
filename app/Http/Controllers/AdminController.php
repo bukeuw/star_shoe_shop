@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Lang;
+use App\User;
 use Stripe\Stripe;
 use Stripe\Account;
 use Stripe\Balance;
@@ -239,7 +240,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('tokostar.admin.admincreate');
     }
 
     /**
@@ -250,7 +251,11 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->all());
+
+        \Session::flash('message', 'Admin baru berhasil ditambah');
+
+        return redirect('/admin/manage');
     }
 
     /**
