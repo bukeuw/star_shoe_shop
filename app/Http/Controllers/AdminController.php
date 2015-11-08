@@ -227,9 +227,9 @@ class AdminController extends Controller
 
     public function getAdminList()
     {
-        $admin = User::where('is_admin', true)->get();
+        $admins = User::where('is_admin', true)->get();
 
-        return view('tokostar.admin.adminlist');
+        return view('tokostar.admin.adminlist', compact('admins'));
     }
 
     /**
@@ -272,7 +272,11 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $admin = User::where('id', $id)
+                            ->where('is_admin', true)
+                            ->first();
+
+        $return view('tokostar.admin.adminlist', compact('admin'));
     }
 
     /**
@@ -284,7 +288,15 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $admin = User::where('id', $id)
+                            ->where('is_admin', true)
+                            ->first();
+
+        $admin->update($request->all());
+
+        \Session::flash('message', 'Admin berhasil diupdate');
+
+        $return redirect('/admin/manage');
     }
 
     /**
@@ -295,6 +307,18 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = User::where('id', $id)
+                            ->where('is_admin', true)
+                            ->first();
+
+        if(\Auth::user()->id == $admin->id) {
+            \Session::flash('message', 'Admin yang sedang aktif tidak dapat dihapus');
+        } else {
+            $admin->delete();
+        }
+
+        \Session::flash('message', 'Admin berhasil dihapus');
+
+        $return redirect('/admin/manage');
     }
 }
