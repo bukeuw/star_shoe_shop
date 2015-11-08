@@ -15,7 +15,7 @@
 @endsection
 
 @section('custom-js')
-<script src="/assets/js/jquery.1.11.3.min.js"></script>
+<script src="/assets/js/jquery-1.11.3.min.js"></script>
 <script src="/assets/js/flot/jquery.flot.js"></script>
 <script type="text/javascript">
 	$(function() {
