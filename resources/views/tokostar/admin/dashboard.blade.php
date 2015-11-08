@@ -23,7 +23,7 @@
 		var balance = [
 		@foreach($transactions as $transaction)
 			[
-				'{{ $transaction->created_at->format() }}',
+				"{{ $transaction->created_at->format('j M F') }}",
 				{{ $transaction->total }}
 			],
 		@endforeach
