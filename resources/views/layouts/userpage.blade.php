@@ -43,13 +43,13 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="#">Profile</a>
+								<a href="/member/profile">Profile</a>
 							</li>
 							<li>
 								<a href="#">Lihat Daftar Pemesanan</a>
 							</li>
 							<li>
-								<a href="#">Lihat Daftar Transaksi</a>
+								<a href="/member/transaction">Lihat Daftar Transaksi</a>
 							</li>
 							<li class="divider" role="separator"></li>
 							<li>
