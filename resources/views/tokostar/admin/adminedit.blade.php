@@ -22,7 +22,7 @@
 			<div class="form-group">
 				<label for="email" class="control-label col-sm-2">E-Mail</label>
 				<div class="col-sm-10">
-					<input type="email" class="form-control" id="email" name="email" value="{{ $admin->name }}">
+					<input type="email" class="form-control" id="email" name="email" value="{{ $admin->email }}">
 				</div>
 			</div>
 			
