@@ -28,11 +28,11 @@
 						<a href="/admin/{{ $admin->id }}/edit" class="btn btn-primary">
 							<i class="fa fa-pencil"></i> Edit
 						</a>
+						@if(Auth::user()->id != $admin->id)
 						<button class="btn btn-danger" type="button" data-toggle="modal" data-target="#confirmModal{{ $admin->id }}">
 							<i class="fa fa-remove"></i> Hapus
 						</button>
 
-						@if(Auth::user()->id != $admin->id)
 							@include('layouts.partials.confirmmodal', [
 										'id' => $admin->id,
 										'url' => '/admin/' . $admin->id,
