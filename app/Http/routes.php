@@ -64,6 +64,10 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('order', 'OrderController@getOrderList');
 	Route::get('invoice', 'AdminController@getInvoice');
 	Route::get('manage', 'AdminController@getAdminList');
+	Route::get('add', 'AdminController@create');
+	Route::post('/', 'AdminController@store');
+	Route::patch('{id}', 'AdminController@update');
+	Route::delete('{id}', 'AdminController@destroy');
 
 	Route::resource('product', 'ProductController');
 	Route::resource('category', 'CategoryController');
