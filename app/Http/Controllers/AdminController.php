@@ -281,7 +281,7 @@ class AdminController extends Controller
                             ->where('is_admin', true)
                             ->first();
 
-        return view('tokostar.admin.adminlist', compact('admin'));
+        return view('tokostar.admin.adminedit', compact('admin'));
     }
 
     /**
