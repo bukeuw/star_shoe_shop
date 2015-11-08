@@ -6,6 +6,7 @@ use Auth;
 use App\Payment;
 use App\Product;
 use App\CartItem;
+use App\Transaction;
 use App\TransactionDetail;
 use Laravel\Cashier\StripeGateway;
 use Laravel\Cashier\Contracts\Billable;

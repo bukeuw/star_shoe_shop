@@ -6,6 +6,7 @@ use Auth;
 use Validator;
 use App\Contact;
 use App\Profile;
+use App\Transaction;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
