@@ -40,7 +40,7 @@
 			<h3 class="panel-title">Data Penjualan</h3>
 		</div>
 		<div class="panel-body">
-			<div class="cart-container">
+			<div class="chart-container">
 				<div id="placeholder" class="chart-placeholder"></div>
 			</div>
 		</div>
