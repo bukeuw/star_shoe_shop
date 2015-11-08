@@ -56,8 +56,8 @@
 		var balance = [
 		@foreach($transactions as $transaction)
 			[
-				"{{ $transaction->created_at->format('j M F') }}",
-				{{ $transaction->total }}
+				{{ $transaction->total }},
+				"{{ $transaction->created_at->format('j M F') }}"
 			],
 		@endforeach
 		];
