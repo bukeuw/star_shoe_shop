@@ -80,7 +80,7 @@
 			},
 			yaxis: {
 				min: 0,
-				max: {{ $transactions->max('total') }}
+				max: 100000000
 			}
 		});
 
