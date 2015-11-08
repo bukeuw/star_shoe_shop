@@ -39,9 +39,11 @@ var FormRule = {
 			email: true
 		},
 		password: {
+			required: false,
 			minlength: 6
 		},
 		password_confirmation: {
+			required: false,
 			minlength: 6,
 			equalTo: '#password'
 		}
