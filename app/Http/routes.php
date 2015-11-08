@@ -36,6 +36,8 @@ Route::post('password/reset', 'Auth\PasswordController@PostReset');
 Route::get('member/profile', 'MemberController@getProfile');
 Route::post('member/profile', 'MemberController@postProfile');
 Route::post('member/profile/{id}', 'MemberController@updateProfile');
+Route::get('member/transaction', 'MemberController@getTransactionList');
+Route::get('member/transaction/{id}', 'MemberController@getTransactionDetail');
 
 Route::get('cart', 'CartController@index');
 Route::get('cart/addItem/{productId}', 'CartController@addItem');
