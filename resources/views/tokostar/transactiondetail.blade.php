@@ -9,7 +9,7 @@
 	<h1 class="content-header">Produk</h1>
 	@if (count($transaction->details) > 0)
 		<p>Nama: {{ Auth::user()->name }}</p>
-		<p>Tgl Transaksi: {{ $transaction->create_at->toDateString() }}</p>
+		<p>Tgl Transaksi: {{ $transaction->created_at->toDateString() }}</p>
 		<p>Metode Pembayaran: {{ $transaction->payment_method }}</p>
 		<div class="table-responsive">
 			<table class="table table-hover">
