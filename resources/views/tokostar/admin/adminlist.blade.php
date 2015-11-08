@@ -9,7 +9,7 @@
 	<h1 class="content-header">Produk</h1>
 	@if (count($admins) > 0)
 		<a href="/admin/add" class="btn btn-primary">
-			<i class="fa fa-plus"></i> Tambah Produk
+			<i class="fa fa-plus"></i> Tambah Admin
 		</a>
 		<table class="table table-hover table-responsive">
 			<thead>
