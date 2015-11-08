@@ -281,7 +281,7 @@ class AdminController extends Controller
                             ->where('is_admin', true)
                             ->first();
 
-        $return view('tokostar.admin.adminlist', compact('admin'));
+        return view('tokostar.admin.adminlist', compact('admin'));
     }
 
     /**
@@ -301,7 +301,7 @@ class AdminController extends Controller
 
         \Session::flash('message', 'Admin berhasil diupdate');
 
-        $return redirect('/admin/manage');
+        return redirect('/admin/manage');
     }
 
     /**
@@ -324,6 +324,6 @@ class AdminController extends Controller
 
         \Session::flash('message', 'Admin berhasil dihapus');
 
-        $return redirect('/admin/manage');
+        return redirect('/admin/manage');
     }
 }
