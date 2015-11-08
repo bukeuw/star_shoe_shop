@@ -79,8 +79,8 @@
 				clickable: true
 			},
 			yaxis: {
-				min: -1.2,
-				max: 1.2
+				min: 0,
+				max: {{ $transactions->max('total') }}
 			}
 		});
 
