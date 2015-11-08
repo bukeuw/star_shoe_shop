@@ -256,7 +256,12 @@ class AdminController extends Controller
     {
         $this->validate($request, $this->rules['create'], $this->message['create']);
 
-        User::create($request->all());
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'is_admin' => true
+        ]);
 
         \Session::flash('message', 'Admin baru berhasil ditambah');
 
