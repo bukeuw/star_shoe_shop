@@ -114,6 +114,9 @@ class MemberController extends Controller
         if(Auth::user()->profile) {
             $actions = 'Update';
             $submitTo = '/member/profile/' . Auth::user()->profile->id;
+            $profile = Auth::user()->profile;
+            
+            return view('tokostar.profile', compact('actions', 'submitTo'));
         }
 
         return view('tokostar.profile', compact('actions', 'submitTo'));
@@ -154,6 +157,18 @@ class MemberController extends Controller
         $profile->update($request->all());
 
         return redirect('/member/profile');
+    }
+
+    public function getTransactionList()
+    {
+        return view('tokostar.transaction');
+    }
+
+    public function getTransactionDetail($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+
+        return view('tokostar.transactiondetail', compact('transaction'));
     }
 
     /**
