@@ -25,8 +25,8 @@ class AdminController extends Controller
     protected $rules = [
         'create' => [
             'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required'
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed|min:6'
         ],
         'login' => [
             'email' => 'required|email',
@@ -44,8 +44,11 @@ class AdminController extends Controller
         'create' => [
             'name.required' => 'Nama tidak boleh kosong',
             'email.required' => 'Email tidak boleh kosong',
-            'email.email' => 'Silhkan masukan email yang valid',
-            'password.required' => 'Password tidak boleh dikosongkan'
+            'email.email' => 'Silahkan masukan email yang valid',
+            'email.unique' => 'Email sudah digunakan silahkan masukan email lain',
+            'password.required' => 'Password tidak boleh dikosongkan',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai',
+            'password.min' => 'Password minimal 6 karakter'
         ],
         'login' => [
             'email.required' => 'Nama tidak boleh kosong',
@@ -251,6 +254,8 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, $this->rules['create'], $this->message['create']);
+
         User::create($request->all());
 
         \Session::flash('message', 'Admin baru berhasil ditambah');
