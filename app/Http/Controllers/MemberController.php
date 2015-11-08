@@ -117,7 +117,7 @@ class MemberController extends Controller
             $submitTo = '/member/profile/' . Auth::user()->profile->id;
             $profile = Auth::user()->profile;
             
-            return view('tokostar.profile', compact('actions', 'submitTo'));
+            return view('tokostar.profile', compact('actions', 'submitTo', 'profile'));
         }
 
         return view('tokostar.profile', compact('actions', 'submitTo'));
