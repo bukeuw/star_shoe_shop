@@ -10,6 +10,10 @@ var FormRule = {
 	},
 
 	registerform: {
+		name: {
+			required: true,
+			minlength: 3
+		},
 		email: {
 			required: true,
 			email: true
@@ -20,6 +24,24 @@ var FormRule = {
 		},
 		password_confirmation: {
 			required: true,
+			minlength: 6,
+			equalTo: '#password'
+		}
+	},
+
+	adminform: {
+		name: {
+			required: true,
+			minlength: 3
+		},
+		email: {
+			required: true,
+			email: true
+		},
+		password: {
+			minlength: 6
+		},
+		password_confirmation: {
 			minlength: 6,
 			equalTo: '#password'
 		}
@@ -70,6 +92,10 @@ var FormMessage = {
 	},
 
 	registerMsg: {
+		name: {
+			required: 'Nama tidak boleh kosong',
+			minlength: 'Nama minimal 3 karakter'
+		},
 		email: {
 			required: 'Email tidak boleh kosong',
 			email: 'Silahkan masukan email yang valid'
@@ -80,6 +106,23 @@ var FormMessage = {
 		},
 		password_confirmation: {
 			required: 'Silahkan konfirmasi password Anda',
+			minlength: 'Konfirmasi minimal 6 karakter',
+			equalTo: 'Konfirmasi password tidak sesuai'
+		}
+	},
+	adminMsg: {
+		name: {
+			required: 'Nama tidak boleh kosong',
+			minlength: 'Nama minimal 3 karakter'
+		},
+		email: {
+			required: 'Email tidak boleh kosong',
+			email: 'Silahkan masukan email yang valid'
+		},
+		password: {
+			minlength: 'Password minimal 6 karakter'
+		},
+		password_confirmation: {
 			minlength: 'Konfirmasi minimal 6 karakter',
 			equalTo: 'Konfirmasi password tidak sesuai'
 		}
@@ -132,6 +175,9 @@ function validateFormInput(form_id) {
 	} else if(form_id === '#category-form') {
 		validationRules = FormRule.categoryform;
 		validationMessages = FormMessage.categoryMsg;
+	} else if(form_id === '#admin-form') {
+		validationRules = FormRule.adminform;
+		validationMessages = FormMessage.adminMsg;
 	}
 
 	$(form_id).validate({
