@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Lang;
 use App\User;
-use Stripe\Stripe;
-use Stripe\Account;
-use Stripe\Balance;
+use App\Transaction;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -65,7 +63,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        Stripe::setApiKey(env('STRIPE_SECRET'));
+        // Stripe::setApiKey(env('STRIPE_SECRET'));
 
         $this->middleware('admin', ['except' => ['getLogin', 'postLogin']]);
         $this->middleware('guest', ['only' => ['getLogin', 'postLogin']]);
@@ -220,13 +218,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $account = Account::retrieve();
-        $balance = Balance::retrieve();
+        $transactions = Transaction::all();
 
-        return view('tokostar.admin.dashboard', [
-            'account' => $account,
-            'balance' => $balance
-        ]);
+        return view('tokostar.admin.dashboard', compact('transactions'));
     }
 
     public function getAdminList()
