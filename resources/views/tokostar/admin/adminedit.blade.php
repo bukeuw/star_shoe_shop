@@ -40,10 +40,12 @@
 				</div>
 			</div>
 
-			<div class="form-control">
-				<span class="help-blok">
-					note: * Kosongkan jika tidak ingin diubah
-				</span>
+			<div class="form-group">
+				<div class="col-sm-10 col-sm-offset-2">
+					<span class="help-blok">
+						note: * Kosongkan jika tidak ingin diubah
+					</span>
+				</div>
 			</div>
 
 			<div class="form-group">
