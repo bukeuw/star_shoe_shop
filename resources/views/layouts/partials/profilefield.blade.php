@@ -20,7 +20,7 @@
 
 <div class="form-group">
 	<label for="province" class="control-label">Provinsi</label>
-	<input type="text" class="form-control" id="province" name="province" placeholder="Provinsi" value="{{ isset($profile) ? $profile->privince : old('province') }}">
+	<input type="text" class="form-control" id="province" name="province" placeholder="Provinsi" value="{{ isset($profile) ? $profile->province : old('province') }}">
 </div>
 
 <div class="form-group">
