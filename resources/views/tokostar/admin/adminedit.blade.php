@@ -1,6 +1,6 @@
 @extends('layouts.adminpage')
 
-@section('title', 'Daftar Produk')
+@section('title', 'Update Admin')
 
 @section('page-content')
 	<form action="/admin" method="POST" class="form-horizontal" id="admin-form" role="form">
