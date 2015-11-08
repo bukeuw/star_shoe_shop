@@ -23,7 +23,7 @@
 				@foreach (Auth::user()->transactions as $transaction)
 					<tr>
 						<td>{{ $transaction->create_at->toDateString() }}</td>
-						<td>{{ $transaction->total_pay }}</td>
+						<td>{{ $transaction->total }}</td>
 						<td>{{ $transaction->payment_method }}</td>
 						<td>{{ $transaction->confirmed? 'Sukses':'Pending' }}</td>
 						<td>

@@ -46,7 +46,7 @@ trait PaymentUtil
 
 		$transaction = new Transaction();
         $transaction->user_id = $user->id;
-        $transaction->total_pay = $total;
+        $transaction->total = $total;
         $transaction->payment_method = $paymentMethod;
         $transaction->save();
 

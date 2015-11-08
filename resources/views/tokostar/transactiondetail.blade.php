@@ -34,7 +34,7 @@
 				<tfoot>
 					<th>Total Bayar</th>
 					<th colspan="3">
-						<p class="text-right">Rp. {{ $transaction->total_pay }}</p>
+						<p class="text-right">Rp. {{ $transaction->total }}</p>
 					</th>
 				</tfoot>
 			</table>
