@@ -63,7 +63,23 @@
 <script src="/assets/js/app.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		validateFormInput('#admin-form');
+		$("#admin-form").validate({
+			errorClass: "help-block",
+			validClass: "help-block",
+			errorElement: "span",
+
+			rules: FormRule.admiform,
+			
+			messages: FormMessage.adminMsg,
+
+			highlight: function(element, errorClass, validClass) {
+			    $(element).closest(".form-group").removeClass("has-success").addClass("has-error");
+			},
+
+			unhighlight: function(element, errorClass, validClass) {
+			    $(element).closest(".form-group").removeClass("has-error").addClass("has-success");
+			}
+		});
 	});
 </script>
 @endsection
