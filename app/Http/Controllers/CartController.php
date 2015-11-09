@@ -156,7 +156,7 @@ class CartController extends Controller
 
         \Session::flash('message', 'Pembayaran berhasil');
 
-        return redirect('/');
+        return redirect('/member/transaction');
     }
 
     public function paymentCreditCard(Request $request)
@@ -168,6 +168,6 @@ class CartController extends Controller
 
         \Session::flash('message', 'Pembayaran berhasil');
 
-        return redirect('/');
+        return redirect('/member/transaction');
     }
 }
