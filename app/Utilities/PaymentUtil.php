@@ -48,6 +48,11 @@ trait PaymentUtil
         $transaction->user_id = $user->id;
         $transaction->total = $total;
         $transaction->payment_method = $paymentMethod;
+
+        if($paymentMethod == 'Kartu Kredit') {
+        	$transaction->confirmed = true;
+        }
+
         $transaction->save();
 
 		foreach($cartItems as $cartItem) {
