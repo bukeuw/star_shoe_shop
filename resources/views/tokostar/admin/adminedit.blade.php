@@ -3,12 +3,14 @@
 @section('title', 'Update Admin')
 
 @section('page-content')
-	<form action="/admin" method="POST" class="form-horizontal" id="admin-form" role="form">
+	<form action="/admin/{{ $admin->id }}" method="POST" class="form-horizontal" id="admin-form" role="form">
 			<div class="form-group">
 				<legend>Tambah Admin</legend>
 			</div>
 
 			{!! csrf_field() !!}
+
+			{!! method_field('PATCH') !!}
 
 			@include('layouts.partials.errorlist')
 
@@ -62,24 +64,10 @@
 <script src="/assets/js/forms-validation.js"></script>
 <script src="/assets/js/app.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#admin-form").validate({
-			errorClass: "help-block",
-			validClass: "help-block",
-			errorElement: "span",
-
-			rules: FormRule.admiform,
-			
-			messages: FormMessage.adminMsg,
-
-			highlight: function(element, errorClass, validClass) {
-			    $(element).closest(".form-group").removeClass("has-success").addClass("has-error");
-			},
-
-			unhighlight: function(element, errorClass, validClass) {
-			    $(element).closest(".form-group").removeClass("has-error").addClass("has-success");
-			}
-		});
+	$( document ).ready(function() {
+		validateFormInput("#admin-form");
+		$("#password").rules("remove", "required");
+		$("#password_confirmation").rules("remove", "required");
 	});
 </script>
 @endsection
