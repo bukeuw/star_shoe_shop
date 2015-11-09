@@ -25,7 +25,7 @@ var FormRule = {
 		password_confirmation: {
 			required: true,
 			minlength: 6,
-			equalTo: '#password'
+			equalTo: "#password"
 		}
 	},
 
@@ -38,15 +38,15 @@ var FormRule = {
 			required: true,
 			email: true
 		},
-		// password: {
-		// 	required: false,
-		// 	minlength: 6
-		// },
-		// password_confirmation: {
-		// 	required: false,
-		// 	minlength: 6,
-		// 	equalTo: '#password'
-		// }
+		password: {
+			required: false,
+			minlength: 6
+		},
+		password_confirmation: {
+			required: false,
+			minlength: 6,
+			equalTo: "#password"
+		}
 	},
 
 	productform: {
@@ -85,78 +85,78 @@ var FormRule = {
 var FormMessage = {
 	loginMsg: {
 		email: {
-			required: 'Email tidak boleh kosong',
-			email: 'Silahkan masukan email yang valid'
+			required: "Email tidak boleh kosong",
+			email: "Silahkan masukan email yang valid"
 		},
 		password: {
-			required: 'Password tidak boleh kosong'
+			required: "Password tidak boleh kosong"
 		}
 	},
 
 	registerMsg: {
 		name: {
-			required: 'Nama tidak boleh kosong',
-			minlength: 'Nama minimal 3 karakter'
+			required: "Nama tidak boleh kosong",
+			minlength: "Nama minimal 3 karakter"
 		},
 		email: {
-			required: 'Email tidak boleh kosong',
-			email: 'Silahkan masukan email yang valid'
+			required: "Email tidak boleh kosong",
+			email: "Silahkan masukan email yang valid"
 		},
 		password: {
-			required: 'Password tidak boleh kosong',
-			minlength: 'Password minimal 6 karakter'
+			required: "Password tidak boleh kosong",
+			minlength: "Password minimal 6 karakter"
 		},
 		password_confirmation: {
-			required: 'Silahkan konfirmasi password Anda',
-			minlength: 'Konfirmasi minimal 6 karakter',
-			equalTo: 'Konfirmasi password tidak sesuai'
+			required: "Silahkan konfirmasi password Anda",
+			minlength: "Konfirmasi minimal 6 karakter",
+			equalTo: "Konfirmasi password tidak sesuai"
 		}
 	},
 	adminMsg: {
 		name: {
-			required: 'Nama tidak boleh kosong',
-			minlength: 'Nama minimal 3 karakter'
+			required: "Nama tidak boleh kosong",
+			minlength: "Nama minimal 3 karakter"
 		},
 		email: {
-			required: 'Email tidak boleh kosong',
-			email: 'Silahkan masukan email yang valid'
+			required: "Email tidak boleh kosong",
+			email: "Silahkan masukan email yang valid"
 		},
-		// password: {
-		// 	minlength: 'Password minimal 6 karakter'
-		// },
-		// password_confirmation: {
-		// 	minlength: 'Konfirmasi minimal 6 karakter',
-		// 	equalTo: 'Konfirmasi password tidak sesuai'
-		// }
+		password: {
+			minlength: "Password minimal 6 karakter"
+		},
+		password_confirmation: {
+			minlength: "Konfirmasi minimal 6 karakter",
+			equalTo: "Konfirmasi password tidak sesuai"
+		}
 	},
 
 	productMsg: {
 		name: {
-			required: 'Nama produk tidak boleh kosong'
+			required: "Nama produk tidak boleh kosong"
 		},
 		description: {
-			required: 'Keterangan produk tidak boleh kosong',
-			maxlength: 'Keterangan produk maksimal 255 karakter'
+			required: "Keterangan produk tidak boleh kosong",
+			maxlength: "Keterangan produk maksimal 255 karakter"
 		},
 		stock: {
-			required: 'Jumlah stok tidak boleh kosong',
-			min: 'Jumlah stok minimal 0'
+			required: "Jumlah stok tidak boleh kosong",
+			min: "Jumlah stok minimal 0"
 		},
 		unit: {
-			required: 'Satuan tidak boleh kosong'
+			required: "Satuan tidak boleh kosong"
 		},
 		price: {
-			required: 'Harga tidak boleh kosong',
-			min: 'Harga minimal 0'
+			required: "Harga tidak boleh kosong",
+			min: "Harga minimal 0"
 		}
 	},
 
 	categoryMsg: {
 		title: {
-			required: 'Judul kategori tidak boleh kosong'
+			required: "Judul kategori tidak boleh kosong"
 		},
 		parent: {
-			required: 'Induk kategori tidak boleh kosong'
+			required: "Induk kategori tidak boleh kosong"
 		}
 	}
 };
@@ -165,19 +165,19 @@ function validateFormInput(form_id) {
 	var validationRules = {},
 		validationMessages = {};
 
-	if(form_id === '#login-form') {
+	if(form_id === "#login-form") {
 		validationRules = FormRule.loginform;
 		validationMessages = FormMessage.loginMsg;
-	} else if(form_id === '#register-form') {
+	} else if(form_id === "#register-form") {
 		validationRules = FormRule.registerform;
 		validationMessages = FormMessage.registerMsg;
-	} else if(form_id === '#product-form') {
+	} else if(form_id === "#product-form") {
 		validationRules = FormRule.productform;
 		validationMessages = FormMessage.productMsg;
-	} else if(form_id === '#category-form') {
+	} else if(form_id === "#category-form") {
 		validationRules = FormRule.categoryform;
 		validationMessages = FormMessage.categoryMsg;
-	} else if(form_id === '#admin-form') {
+	} else if(form_id === "#admin-form") {
 		validationRules = FormRule.adminform;
 		validationMessages = FormMessage.adminMsg;
 	}
@@ -186,9 +186,9 @@ function validateFormInput(form_id) {
 		// errorClass and validClass has same
 		// and errorElement set to span because
 		// we are using bootstrap css classes
-		errorClass: 'help-block',
-		validClass: 'help-block',
-		errorElement: 'span',
+		errorClass: "help-block",
+		validClass: "help-block",
+		errorElement: "span",
 
 		// validation rules
 		rules: validationRules,
@@ -197,11 +197,11 @@ function validateFormInput(form_id) {
 		messages: validationMessages,
 
 		highlight: function(element, errorClass, validClass) {
-		    $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+		    $(element).closest(".form-group").removeClass("has-success").addClass("has-error");
 		},
 
 		unhighlight: function(element, errorClass, validClass) {
-		    $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
+		    $(element).closest(".form-group").removeClass("has-error").addClass("has-success");
 		}
 	});
 }
