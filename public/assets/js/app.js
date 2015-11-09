@@ -38,15 +38,15 @@ var FormRule = {
 			required: true,
 			email: true
 		},
-		password: {
-			required: false,
-			minlength: 6
-		},
-		password_confirmation: {
-			required: false,
-			minlength: 6,
-			equalTo: '#password'
-		}
+		// password: {
+		// 	required: false,
+		// 	minlength: 6
+		// },
+		// password_confirmation: {
+		// 	required: false,
+		// 	minlength: 6,
+		// 	equalTo: '#password'
+		// }
 	},
 
 	productform: {
@@ -121,13 +121,13 @@ var FormMessage = {
 			required: 'Email tidak boleh kosong',
 			email: 'Silahkan masukan email yang valid'
 		},
-		password: {
-			minlength: 'Password minimal 6 karakter'
-		},
-		password_confirmation: {
-			minlength: 'Konfirmasi minimal 6 karakter',
-			equalTo: 'Konfirmasi password tidak sesuai'
-		}
+		// password: {
+		// 	minlength: 'Password minimal 6 karakter'
+		// },
+		// password_confirmation: {
+		// 	minlength: 'Konfirmasi minimal 6 karakter',
+		// 	equalTo: 'Konfirmasi password tidak sesuai'
+		// }
 	},
 
 	productMsg: {
