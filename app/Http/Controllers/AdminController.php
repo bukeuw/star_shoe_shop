@@ -211,6 +211,34 @@ class AdminController extends Controller
         return false;
     }
 
+    public function getAdminList()
+    {
+        $admins = User::where('is_admin', true)->get();
+
+        return view('tokostar.admin.adminlist', compact('admins'));
+    }
+
+    protected function getChartData()
+    {
+        $transactions = Transaction::all();
+
+        $data = (object) array(
+            "Jan" => 0, "Feb" => 0, "Mar" => 0,
+            "Apr" => 0, "May" => 0, "Jun" => 0,
+            "Jul" => 0, "Aug" => 0, "Sep" => 0,
+            "Oct" => 0, "Nov" => 0, "Dec" => 0
+        );
+
+        foreach($transactions as $transaction) {
+            $monthName = $transaction->created_at->format('M');
+            if(property_exists($data, $monthName)) {
+                $data->{$monthName} += $transaction->total;
+            }
+        }
+
+        return $data;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -218,16 +246,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::all();
+        $chartData = $this->getChartData();
 
-        return view('tokostar.admin.dashboard', compact('transactions'));
-    }
-
-    public function getAdminList()
-    {
-        $admins = User::where('is_admin', true)->get();
-
-        return view('tokostar.admin.adminlist', compact('admins'));
+        return view('tokostar.admin.dashboard', compact('chartData'));
     }
 
     /**

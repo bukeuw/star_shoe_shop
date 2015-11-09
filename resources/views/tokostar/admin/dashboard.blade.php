@@ -11,17 +11,7 @@
 		padding: 20px 15px 15px 15px;
 		margin: 15px auto 30px auto;
 		border: 1px solid #ddd;
-		background: #fff;
-		background: linear-gradient(#f6f6f6 0, #fff 50px);
-		background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
-		background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
-		background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
-		background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
-		box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-		-o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-		-ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-		-moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-		-webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+		background-color: #fff;
 	}
 
 	.chart-placeholder {
@@ -29,6 +19,15 @@
 		height: 100%;
 		font-size: 14px;
 		line-height: 1.2em;
+	}
+	#chart-tooltip {
+		position: absolute;
+		display: none;
+		border: 1px solid #1976d2;
+		padding: 3px;
+		color: #fff;
+		background-color: #1976d2;
+		opacity: 0.90;
 	}
 </style>
 @endsection
@@ -49,22 +48,66 @@
 
 @section('custom-js')
 <script src="/assets/js/jquery-1.11.3.min.js"></script>
+<!--[if lte IE 8]><script src="/assets/js/flot/excanvas.min.js"></script><![endif]-->
 <script src="/assets/js/flot/jquery.flot.js"></script>
+<script src="/assets/js/flot/jquery.flot.categories.js"></script>
+<script src="/assets/js/flot/jquery.flot.canvas.js"></script>
 <script type="text/javascript">
+	function getMonthName(id) {
+		switch(id) {
+			case 0:
+				return "Januari";
+				break;
+			case 1:
+				return "Februari";
+				break;
+			case 2:
+				return "Maret";
+				break;
+			case 3:
+				return "April";
+				break;
+			case 4:
+				return "Mei";
+				break;
+			case 5:
+				return "Juni";
+				break;
+			case 6:
+				return "Juli";
+				break;
+			case 7:
+				return "Agustus";
+				break;
+			case 8:
+				return "September";
+				break;
+			case 9:
+				return "Oktober";
+				break;
+			case 10:
+				return "November";
+				break;
+			case 11:
+				return "Desember";
+				break;
+		}
+	}
+
 	$(function() {
 
 		var balance = [
-		@foreach($transactions as $transaction)
+		@foreach($chartData as $month => $data)
 			[
-				"{{ $transaction->created_at->format('j M F') }}",
-				{{ $transaction->total }},
+				"{{ $month }}",
+				{{ $data }},
 			],
 		@endforeach
 		];
 
 		var plot = $.plot("#placeholder", [{
 			data: balance,
-			label: "Penjualan"
+			label: "Pendapatan"
 		}], {
 			series: {
 				lines: {
@@ -80,7 +123,7 @@
 			},
 			yaxis: {
 				min: 0,
-				max: 100000000
+				max: 10000000
 			},
 			xaxis: {
 				mode: "categories",
@@ -88,33 +131,24 @@
 			}
 		});
 
-		$("<div id='tooltip'></div>")
-			.css({
-				position: "absolute",
-				display: "none",
-				border: "1px solid #fdd",
-				padding: "2px",
-				"background-color": "#fee",
-				opacity: 0.80
-			})
-			.appendTo("body");
+		$("<div id='chart-tooltip'></div>").appendTo("body");
 
 		$("#placeholder")
 			.bind("plothover", function(event, pos, item) {
 
 				if (item) {
-					var x = item.datapoint[0].toFixed(2),
-						y = item.datapoint[1].toFixed(2);
+					var x = item.datapoint[0],
+						y = item.datapoint[1];
 
-					$("#tooltip")
-						.html(item.series.label + " of " + x + " = " + y)
+					$("#chart-tooltip")
+						.html(item.series.label + " bulan " + getMonthName(x) + " : Rp. " + y)
 						.css({
 							top: item.pageY + 5,
 							left: item.pageX + 5
 						})
 						.fadeIn(200);
 				} else {
-					$("#tooltip")
+					$("#chart-tooltip")
 						.hide();
 				}
 			});
