@@ -24,10 +24,11 @@
 		position: absolute;
 		display: none;
 		border: 1px solid #1976d2;
-		padding: 3px;
+		border-radius: 3px;
+		padding: 3px 5px;
 		color: #fff;
 		background-color: #1976d2;
-		opacity: 0.90;
+		opacity: 0.80;
 	}
 </style>
 @endsection
@@ -107,11 +108,13 @@
 
 		var plot = $.plot("#placeholder", [{
 			data: balance,
-			label: "Pendapatan"
+			label: "Pendapatan",
+			color: "#1976d2"
 		}], {
 			series: {
 				lines: {
-					show: true
+					show: true,
+					fill: true
 				},
 				points: {
 					show: true
