@@ -16,6 +16,7 @@
 				<thead>
 					<tr>
 						<th>Tanggal</th>
+						<th>Nama</th>
 						<th>Total Bayar</th>
 						<th>Metode Pembayaran</th>
 						<th>Status</th>
@@ -26,6 +27,7 @@
 				@foreach ($transactions as $transaction)
 					<tr>
 						<td>{{ $transaction->created_at->format('j F Y') }}</td>
+						<td>{{ $transaction->user->name }}</td>
 						<td>Rp. {{ $transaction->total }}</td>
 						<td>{{ $transaction->payment_method }}</td>
 						<td>{{ $transaction->confirmed? 'Sukses':'Pending' }}</td>
