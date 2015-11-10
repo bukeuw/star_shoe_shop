@@ -95,7 +95,7 @@
 			},
 			yaxis: {
 				min: 0,
-				max: 10000000
+				max: {{ $chartData->max>10000000 ? $chartData->max : 10000000 }}
 			},
 			xaxis: {
 				mode: "categories",
