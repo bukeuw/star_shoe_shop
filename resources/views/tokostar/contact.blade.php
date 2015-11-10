@@ -18,22 +18,22 @@
 
 			<div class="form-group">
 				<label for="name">Nama Lengkap</label>
-				<input type="text" class="form-control" id="name" placeholder="Masukan nama lengkap Anda" >
+				<input type="text" class="form-control" id="name" name="name" placeholder="Masukan nama lengkap Anda" value="{{ old('name') }}">
 			</div>
 
 			<div class="form-group">
 				<label for="phone">No Telepon/Hp</label>
-				<input type="text" class="form-control" id="phone" placeholder="Masukan no telepon/hp Anda" >
+				<input type="text" class="form-control" id="phone" name="phone" placeholder="Masukan no telepon/hp Anda" value="{{ old('phone') }}">
 			</div>
 		
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input type="email" class="form-control" id="email" placeholder="Masukan email Anda">
+				<input type="email" class="form-control" id="email" name="email" placeholder="Masukan email Anda" value="{{ old('email') }}">
 			</div>
 
 			<div class="form-group">
 				<label for="message">Pesan</label>
-				<textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Masukan pesan anda"></textarea>
+				<textarea class="form-control" name="message" id="message" cols="30" rows="10" placeholder="Masukan pesan anda">{{ old('message') }}</textarea>
 			</div>
 
 			<div class="form-group">
@@ -43,4 +43,8 @@
 	</div>
 
 	@include('layouts.partials.sidebar')
+@endsection
+
+@section('custom-js')
+	@include('layouts.partials.messagebagscript')
 @endsection
