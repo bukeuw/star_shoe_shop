@@ -68,10 +68,12 @@
 
 		var balance = [
 		@foreach($chartData as $month => $data)
+			@if($month != 'max')
 			[
 				"{{ $month }}",
 				{{ $data }},
 			],
+			@endif
 		@endforeach
 		];
 
