@@ -42,11 +42,12 @@ trait PaymentUtil
 
         if($paymentMethod == 'Kartu Kredit') {
         	$transaction->confirmed = true;
+        } elseif($paymentMethod == 'Transfer Bank') {
+        	Payment::create(array_merge(['transaction_id' => $transaction->id], $options));
         }
 
         $transaction->save();
 
-        Payment::create(array_merge(['transaction_id' => $transaction->id], $options));
 
 		foreach($cartItems as $cartItem) {
 			TransactionDetail::create([
@@ -55,7 +56,7 @@ trait PaymentUtil
 				'quantity' => $cartItem->qty,
 			]);
 
-			Product::find($cartItem->product->id)->decrement('stock', 5);
+			Product::find($cartItem->product->id)->decrement('stock', $cartItem->qty);
 			
 			CartItem::destroy($cartItem->id);
 		}
