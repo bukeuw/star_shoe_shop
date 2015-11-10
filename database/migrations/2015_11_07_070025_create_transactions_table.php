@@ -17,7 +17,7 @@ class CreateTransactionsTable extends Migration
     	    $table->integer('user_id');
     	    $table->string('payment_method');
     	    $table->decimal('total', 8, 0);
-    	    $table->boolean('comfirmed')->default(false);
+    	    $table->boolean('confirmed')->default(false);
             $table->timestamps();
         });
     }
