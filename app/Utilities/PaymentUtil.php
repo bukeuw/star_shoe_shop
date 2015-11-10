@@ -42,12 +42,13 @@ trait PaymentUtil
 
         if($paymentMethod == 'Kartu Kredit') {
         	$transaction->confirmed = true;
-        } elseif($paymentMethod == 'Transfer Bank') {
-        	Payment::create(array_merge(['transaction_id' => $transaction->id], $options));
         }
 
         $transaction->save();
 
+		if($paymentMethod == 'Transfer Bank') {
+        	Payment::create(array_merge(['transaction_id' => $transaction->id], $options));
+        }
 
 		foreach($cartItems as $cartItem) {
 			TransactionDetail::create([
