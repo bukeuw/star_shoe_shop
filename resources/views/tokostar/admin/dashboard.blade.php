@@ -22,6 +22,7 @@
 <script src="/assets/js/flot/jquery.flot.js"></script>
 <script src="/assets/js/flot/jquery.flot.categories.js"></script>
 <script src="/assets/js/flot/jquery.flot.canvas.js"></script>
+<script src="/assets/js/accounting.min.js"></script>
 <script type="text/javascript">
 	function getMonthName(id) {
 		switch(id) {
@@ -115,7 +116,7 @@
 						y = item.datapoint[1];
 
 					$("#chart-tooltip")
-						.html(item.series.label + " bulan " + getMonthName(x) + " : Rp. " + y)
+						.html(item.series.label + " bulan " + getMonthName(x) + " : " + accounting.formatMoney(y, "Rp. ", 0, ".", ","))
 						.css({
 							top: item.pageY + 5,
 							left: item.pageX + 5
