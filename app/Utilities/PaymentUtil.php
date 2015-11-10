@@ -36,7 +36,7 @@ trait PaymentUtil
 	 * @param  string $paymentMethod
 	 * @return \Stripe\Invoice
 	 */
-	protected function createInvoice($paymentMethod)
+	protected function createInvoice($paymentMethod, options = [])
 	{
 		$user = $this->getBillable();
 
@@ -77,7 +77,7 @@ trait PaymentUtil
 		$user = $this->getBillable();
 		$stripeGateway = $this->getStripeGateway();
 
-		if($user->stripeIsActive() && $user->hasStripeId()) {
+		if($user->hasStripeId()) {
 			$customer = $stripeGateway->createStripeCustomer($token, $options);
 		} elseif (! is_null($token)) {
 			$stripeGateway->updateCard($token);
@@ -91,6 +91,6 @@ trait PaymentUtil
 
 	protected function handleBankTransferPayment($options = [])
 	{
-		$this->createInvoice('Transfer Bank');
+		$this->createInvoice('Transfer Bank', $options);
 	}
 }
