@@ -219,6 +219,30 @@ class AdminController extends Controller
         return view('tokostar.admin.messagelist', compact('messages'));
     }
 
+    public function getInvoice(Request $request)
+    {
+        $transactions = Transaction::paginate(20);
+
+        if($request->has('periode') && $request->has('q')) {
+            if($request->input('periode') == 'annually') {
+                //$transactions = Transaction::where('')
+            } elseif($request->input('periode') == 'monthly') {
+                //
+            } elseif($request->input('periode') == 'daily') {
+                //
+            }
+        }
+
+        return view('tokostar.admin.invoices', compact('transactions'));
+    }
+
+    public function getInvoiceById($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+
+        return view('tokostar.admin.invoice', compact('transaction'));
+    }
+
     public function getAdminList()
     {
         $admins = User::where('is_admin', true)->get();

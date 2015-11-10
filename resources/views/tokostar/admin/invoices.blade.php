@@ -4,7 +4,12 @@
 
 @section('page-content')
 
-	<h1 class="content-header">Produk</h1>
+	<h1 class="content-header">Daftar Transaksi</h1>
+	<div>
+		<div class="input-group">
+			//
+		</div>
+	</div>
 	@if (count($transactions) > 0)
 		<div class="table-responsive">
 			<table class="table table-hover">
