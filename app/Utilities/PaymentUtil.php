@@ -55,6 +55,8 @@ trait PaymentUtil
 
         $transaction->save();
 
+        Payment::create(array_merge(['transaction_id' => $transaction->id], $options));
+
 		foreach($cartItems as $cartItem) {
 			TransactionDetail::create([
 				'transaction_id' => $transaction->id,
@@ -90,7 +92,5 @@ trait PaymentUtil
 	protected function handleBankTransferPayment($options = [])
 	{
 		$this->createInvoice('Transfer Bank');
-
-		Payment::create($options);
 	}
 }
