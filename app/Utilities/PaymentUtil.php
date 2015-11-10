@@ -36,7 +36,7 @@ trait PaymentUtil
 	 * @param  string $paymentMethod
 	 * @return \Stripe\Invoice
 	 */
-	protected function createInvoice($paymentMethod, options = [])
+	protected function createInvoice($paymentMethod, $options = [])
 	{
 		$user = $this->getBillable();
 
