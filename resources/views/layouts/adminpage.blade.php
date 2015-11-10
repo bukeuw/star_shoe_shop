@@ -73,6 +73,12 @@
 						</a>
 					</li>
 					<li>
+						<a href="/admin/messages">
+							<i class="fa fa-comments"></i>
+							Daftar Pesan
+						</a>
+					</li>
+					<li>
 						<a href="/admin/order">
 							<i class="fa fa-list"></i>
 							Pesanan
