@@ -14,7 +14,6 @@
 				<a href="/" class="navbar-brand">
 					<img src="/assets/img/logo tokostar.png" alt="logo toko star">
 				</a>
-				<a href="/" class="navbar-brand">Toko Star</a>
 			</div>
 			<nav class="collapse navbar-collapse" id="tkstar-navbar">
 				<ul class="nav navbar-nav">
