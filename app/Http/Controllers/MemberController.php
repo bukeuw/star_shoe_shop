@@ -102,7 +102,7 @@ class MemberController extends Controller
             'message' => $request->input('message')
         ]);
 
-        Session::flash('Pesan Berhasil dikirim');
+        \Session::flash('message', 'Pesan Berhasil dikirim');
 
         return redirect('/contact');
     }
