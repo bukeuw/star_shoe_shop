@@ -8,26 +8,17 @@ use App\Product;
 use App\CartItem;
 use App\Transaction;
 use App\TransactionDetail;
-use Laravel\Cashier\StripeGateway;
-use Laravel\Cashier\Contracts\Billable;
 
 trait PaymentUtil
 {
 	/**
 	 * Get the billable object
 	 * 
-	 * @return \Laravel\Cashier\Contracts\Billable
+	 * @return \App\User
 	 */
-	protected function getBillable()
+	protected function getUser()
 	{
 		return Auth::user();
-	}
-
-	protected function getStripeGateway()
-	{
-		$billable = $this->getBillable();
-		
-		return new StripeGateway($billable);
 	}
 
 	/**
@@ -38,7 +29,7 @@ trait PaymentUtil
 	 */
 	protected function createInvoice($paymentMethod, $options = [])
 	{
-		$user = $this->getBillable();
+		$user = $this->getUser();
 
 		$cart = $this->getUserCart();
         $cartItems = $cart->cartItems;
@@ -74,17 +65,13 @@ trait PaymentUtil
 
 	protected function handleCreditCardPayment($token, $options = [])
 	{	
-		$user = $this->getBillable();
-		$stripeGateway = $this->getStripeGateway();
-
-		if($user->hasStripeId()) {
-			$customer = $stripeGateway->createStripeCustomer($token, $options);
-		} elseif (! is_null($token)) {
-			$stripeGateway->updateCard($token);
+		$user = $this->getUser();
+		
+		if(!$user->subscribed()) {
+			$user->subscription('member')->create($token, $options);
+		} else {
+			$user->updateCard($token);
 		}
-
-		$customer = $stripeGateway->getStripeCustomer($customer->id);
-		$stripeGateway->updateLocalStripeData($customer);
 
 		$this->createInvoice('Kartu Kredit');
 	}
