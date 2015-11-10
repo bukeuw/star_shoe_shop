@@ -2,37 +2,6 @@
 
 @section('title', 'dashboard')
 
-@section('custom-css')
-<style>
-	.chart-container {
-		box-sizing: border-box;
-		width: 100%;
-		height: 450px;
-		padding: 20px 15px 15px 15px;
-		margin: 15px auto 30px auto;
-		border: 1px solid #ddd;
-		background-color: #fff;
-	}
-
-	.chart-placeholder {
-		width: 100%;
-		height: 100%;
-		font-size: 14px;
-		line-height: 1.2em;
-	}
-	#chart-tooltip {
-		position: absolute;
-		display: none;
-		border: 1px solid #1976d2;
-		border-radius: 3px;
-		padding: 3px 5px;
-		color: #fff;
-		background-color: #1976d2;
-		opacity: 0.80;
-	}
-</style>
-@endsection
-
 @section('page-content')
 	<h1 class="content-header">Dasboard</h1>
 	<div class="panel panel-default">
