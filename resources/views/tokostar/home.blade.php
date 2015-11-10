@@ -7,6 +7,14 @@
 		
 		@include('layouts.partials.searchbox')
 
+		<div class="col-sm-12">
+			<div class="jumbotron tkstar-banner">
+				<h1>Selamat datang di tokostar.com</h1>
+				<p>Kami menyediakan berbagai jenis sendal dan sepatu berkualitas.</p> <br />
+				<a href="/product" class="btn">Lihat semua produk</a>
+			</div>
+		</div>
+
 		<div class="col-md-9">
 			<div class="row products">
 

@@ -78,6 +78,35 @@ body,
 	margin: 10px 0;
 }
 
+/* Banner */
+
+.tkstar-banner {
+	background-image: url("/assets/img/banner toko star.png");
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+
+.tkstar-banner h1,
+.tkstar-banner p {
+	display: inline-block;
+	padding: 6px 9px 8px 9px;
+	width: initial;
+	color: #fff;
+	background-color: rgba(3, 3, 3, 0.8);
+}
+
+.tkstar-banner .btn {
+	color: #21a082;
+	background-color: rgba(3, 3, 3, 0.8);
+	border-radius: 0;
+}
+
+.tkstar-banner .btn:hover {
+	color: #fff;
+	background-color: #21a082;
+}
+
 /*
  * custom button
  *  
