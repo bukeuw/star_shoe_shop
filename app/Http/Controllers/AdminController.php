@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Lang;
 use App\User;
+use App\Contact;
 use App\Transaction;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -209,6 +210,13 @@ class AdminController extends Controller
         }
 
         return false;
+    }
+
+    public function getMessageList()
+    {
+        $messages = Contact::paginate(10);
+
+        return view('tokostar.admin.messagelist', compact('messages'));
     }
 
     public function getAdminList()

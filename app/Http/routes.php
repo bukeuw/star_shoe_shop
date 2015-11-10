@@ -66,6 +66,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::get('order', 'OrderController@getOrderList');
 	Route::get('invoice', 'AdminController@getInvoice');
 	Route::get('manage', 'AdminController@getAdminList');
+	Route::get('messages', 'AdminController@getMessageList');
 	Route::get('add', 'AdminController@create');
 	Route::post('/', 'AdminController@store');
 	Route::get('{id}/edit', 'AdminController@edit');
