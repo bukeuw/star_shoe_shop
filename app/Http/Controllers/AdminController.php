@@ -240,7 +240,7 @@ class AdminController extends Controller
     {
         $transaction = Transaction::findOrFail($id);
 
-        return view('tokostar.admin.invoice', compact('transaction'));
+        return view('tokostar.admin.invoicedetail', compact('transaction'));
     }
 
     public function getAdminList()
