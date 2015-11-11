@@ -17,10 +17,7 @@ Route::get('product', 'ProductController@showProduct');
 Route::get('about', 'MemberController@showAbout');
 Route::get('contact', 'MemberController@getContact');
 Route::post('contact', 'MemberController@postContact');
-
-Route::get('/info', function() {
-	return phpinfo();
-});
+Route::get('category/{name}', 'CategoryController@showProductByCategory');
 
 // Authentication routes
 Route::get('login', 'Auth\AuthController@getLogin');
@@ -63,7 +60,7 @@ Route::group(['prefix' => 'admin'], function() {
 	Route::post('login', 'AdminController@postLogin');
 	Route::get('logout', 'AdminController@getLogout');
 
-	Route::get('order', 'OrderController@getOrderList');
+	Route::get('order', 'OrderController@index');
 	Route::get('invoice', 'AdminController@getInvoice');
 	Route::get('invoice/{id}', 'AdminController@getInvoiceById');
 	Route::get('manage', 'AdminController@getAdminList');
