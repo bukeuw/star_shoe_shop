@@ -1,9 +1,9 @@
 @extends('layouts.adminpage')
 
-@section('title', 'Daftar Produk')
+@section('title', 'Tambah Kategori')
 
 @section('page-content')
-	<form action="/admin/category" method="POST" enctype="multipart/form-data" class="form-horizontal" id="category-form" role="form">
+	<form action="/admin/category" method="POST" class="form-horizontal" id="category-form" role="form">
 			<div class="form-group">
 				<legend>Tambah Kategori</legend>
 			</div>
@@ -13,7 +13,7 @@
 			@include('layouts.partials.errorlist')
 
 			<div class="form-group">
-				<label for="title" class="col-sm-2 control-label">Nama Produk</label>
+				<label for="title" class="col-sm-2 control-label">Judul Kategori</label>
 				<div class="col-sm-5 col-md-3">
 					<input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
 				</div>
@@ -36,7 +36,7 @@
 			<div class="form-group">
 				<div class="col-sm-10 col-sm-offset-2">
 					<button type="submit" class="btn btn-success">Simpan</button>
-					<a href="/admin/product" class="btn btn-warning">Batal</a>
+					<a href="/admin/category" class="btn btn-warning">Batal</a>
 				</div>
 			</div>
 	</form>
