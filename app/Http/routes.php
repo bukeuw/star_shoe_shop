@@ -45,7 +45,10 @@ Route::get('cart/checkout', 'CartController@getCheckout');
 Route::post('cart/payment/bank-transfer', 'CartController@paymentBank');
 Route::post('cart/payment/creditcard', 'CartController@paymentCreditCard');
 
-Route::resource('order', 'OrderController');
+Route::get('order', 'OrderController@showOrderList');
+Route::get('order/addItem/{$id}', 'OrderController@addItem');
+Route::post('order/updateItem/{$id}', 'OrderController@updateItem');
+Route::get('order/removeItem/{$id}', 'OrderController@removeItem');
 
 // Registration routes
 Route::get('register', 'Auth\AuthController@getRegister');

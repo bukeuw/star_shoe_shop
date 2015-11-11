@@ -48,7 +48,7 @@
 								<a href="/member/profile">Profile</a>
 							</li>
 							<li>
-								<a href="#">Lihat Daftar Pemesanan</a>
+								<a href="/order">Lihat Daftar Pemesanan</a>
 							</li>
 							<li>
 								<a href="/member/transaction">Lihat Daftar Transaksi</a>

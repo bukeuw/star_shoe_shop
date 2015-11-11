@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderItem extends Model
 {
+	protected $table = 'order_items';
+	protected $fillable = ['order_id', 'product_id', 'qty', 'confirmed'];
+
     public function product()
     {
         return $this->belongsTo('App\Product');
