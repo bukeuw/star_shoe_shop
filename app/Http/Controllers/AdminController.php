@@ -27,6 +27,11 @@ class AdminController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:6'
         ],
+        'update' => [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'confirmed|min:6'
+        ],
         'login' => [
             'email' => 'required|email',
             'password' => 'required',
@@ -46,6 +51,14 @@ class AdminController extends Controller
             'email.email' => 'Silahkan masukan email yang valid',
             'email.unique' => 'Email sudah digunakan silahkan masukan email lain',
             'password.required' => 'Password tidak boleh dikosongkan',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai',
+            'password.min' => 'Password minimal 6 karakter'
+        ],
+        'update' => [
+            'name.required' => 'Nama tidak boleh kosong',
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Silahkan masukan email yang valid',
+            'email.unique' => 'Email sudah digunakan silahkan masukan email lain',
             'password.confirmed' => 'Konfirmasi password tidak sesuai',
             'password.min' => 'Password minimal 6 karakter'
         ],
@@ -351,11 +364,20 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, $this->rules['update'], $this->messages['update']);
+
         $admin = User::where('id', $id)
                             ->where('is_admin', true)
                             ->first();
 
-        $admin->update($request->all());
+        $admin->name = $request->input('name');
+        $admin->email = $request->input('email');
+        
+        if($request->has('password')) {
+            $admin->password = bcrypt($request->input('password'));
+        }
+
+        $admin->save();
 
         \Session::flash('message', 'Admin berhasil diupdate');
 
