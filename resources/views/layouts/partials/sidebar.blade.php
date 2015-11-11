@@ -3,36 +3,36 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">Kategory</h3>
 		</div>
-		<div class="list-group">
-			<div>
-				<a class="list-group-item" href="#category1" data-toggle="collapse" data-targe="#category1" aria-expanded="false" aria-controls="category1">Sandal</a>
-				<ul class="collapse in" id="category1">
-					<li>
-						<a href="#">Pria</a>
-					</li>
-					<li>
-						<a href="#">Wanita</a>
-					</li>
-					<li>
-						<a href="#">Anak-anak</a>
-					</li>
-				</ul>
-			</div>
-			<div>
-				<a class="list-group-item" href="#category2" data-toggle="collapse" data-targe="#category2" aria-expanded="false" aria-controls="category2">Sepatu</a>
-				<ul class="collapse" id="category2">
-					<li>
-						<a href="#">Pria</a>
-					</li>
-					<li>
-						<a href="#">Wanita</a>
-					</li>
-					<li>
-						<a href="#">Anak-anak</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+		@if(count($categories) > 0)
+
+			@foreach($categories as $category)
+				<div class="list-group">
+					<div>
+					@if($category->parent_id == 0)
+						<a class="list-group-item"
+							href="#category{{ $category->id }}"
+							data-toggle="collapse" 
+							data-targe="#category{{ $category->id }}">
+							{{ $category->title }}
+						</a>
+						{{-- TODO: fix replace this nested looping with something better --}}
+						<ul class="collapse in" id="category{{ $category->id }}">
+						@foreach($categories as $child_category)
+							@if($child_category->parent_id == $category->id)
+								<li>
+									<a href="/category/{{ $child_category->title }}">{{ $child_category->title }}</a>
+								</li>
+							@endif
+						@endforeach
+						</ul>
+					@endif
+					</div>
+				</div>
+			@endforeach
+
+		@else
+			Tidak ada kategori
+		@endif
 	</div>
 
 	<div class="panel panel-dark partner">
