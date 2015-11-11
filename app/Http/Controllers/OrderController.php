@@ -18,6 +18,8 @@ class OrderController extends Controller
     protected function getUserOrder()
     {
         $order = Order::firstOrCreate(['user_id' => \Auth::user()->id]);
+
+        return $order;
     }
 
     protected function getTotalPrice(Collection $orderItems)
