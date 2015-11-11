@@ -1,6 +1,10 @@
 @extends('layouts.adminpage')
 
-@section('title', 'Daftar Produk')
+@section('title', 'Edit Produk')
+
+@section('custom-css')
+	@include('layouts.partials.select2cdn')
+@endsection
 
 @section('page-content')
 	<form action="/admin/product/{{ $product->id }}" method="POST" enctype="multipart/form-data" class="form-horizontal" id="product-form" role="form">
@@ -53,6 +57,8 @@
 			</div>
 		</div>
 
+		@include('layouts.partials.categoryselect')
+
 		<div class="form-group">
 			<label for="product_img" class="col-sm-2 control-label">Gambar</label>
 			<div class="col-sm-10 col-md-6">
@@ -74,6 +80,9 @@
 <script src="/assets/js/jquery.validate-1.14.1.min.js"></script>
 <script src="/assets/js/forms-validation.js"></script>
 <script src="/assets/js/app.js"></script>
+
+@include('layouts.partials.categoryselectscript')
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		validateFormInput('#product-form');
