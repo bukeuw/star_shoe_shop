@@ -113,9 +113,7 @@ class ProductController extends Controller
      */
     public function showRecentProduct()
     {
-        $products = Product::all()
-            ->sortBy('created_at')
-            ->take(8);
+        $products = Product::latest()->take(8);
 
         return view('tokostar.home', compact('products'));
     }
