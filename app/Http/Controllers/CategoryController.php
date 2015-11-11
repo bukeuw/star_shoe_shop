@@ -9,6 +9,25 @@ use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['showProductByCategory']]);
+    }
+
+    /**
+     * Show product that has specific category name
+     * 
+     * @param  string $name
+     * @return Illuminate\Http\Response
+     */
+    protected function showProductByCategory($name)
+    {
+        $category = Category::where('title', $name)->first();
+        $products = $category->products()->paginate(8);
+
+        return view('tokostar.product', compact('products'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +35,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(20);
 
         return view('tokostar.admin.categorylist')
             ->with('categories', $categories);
@@ -29,10 +48,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('parent_id', 0)->get();
 
-        return view('tokostar.admin.categorycreate')
-            ->with('categories', $categories);
+        return view('tokostar.admin.categorycreate', compact('categories'));
     }
 
     /**
@@ -43,7 +61,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create([
+            'title' => $request->input('title'),
+            'parent_id' => $request->input('parent_category'),
+        ]);
+
+        \Session::flash('message', 'Kategori berhasil ditambah');
+
+        return redirect('/admin/category');
     }
 
     /**
@@ -59,13 +84,18 @@ class CategoryController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 
+     * @fixme multiple query
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $categories = Category::where('parent_id', 0)->get();
+        $selected = Category::findOrFail($id);
+
+        return view('tokostar.admin.categoryedit', compact('categories', 'selected'));
     }
 
     /**
@@ -77,7 +107,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        $category->update($request->all());
+
+        \Session::flash('message', 'Kategori berhasil edit');
+
+        return redirect('/admin/category');
     }
 
     /**
@@ -88,6 +124,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
+        \Session::flash('message', 'Kategori berhasil dihapus');
+
+        return redirect('/admin/category');
     }
 }
