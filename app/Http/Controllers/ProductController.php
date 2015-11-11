@@ -113,7 +113,9 @@ class ProductController extends Controller
      */
     public function showRecentProduct()
     {
-        $products = Product::latest()->take(8);
+        $products = Product::latest()
+                        ->take(8)
+                        ->get();
 
         return view('tokostar.home', compact('products'));
     }
@@ -200,7 +202,7 @@ class ProductController extends Controller
 
         $this->handleUploadedImage($request);
 
-        Product::create([
+        $product = Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'stock' => $request->input('stock'),
@@ -208,6 +210,10 @@ class ProductController extends Controller
             'price' => $request->input('price'),
             'img_name' => $request->input('name')
         ]);
+
+        if($request->has('categories')) {
+            $product->categories()->sync($request->input('categories'));
+        }
 
         Session::flash('message', 'Produk berhasil di simpan');
 
@@ -264,6 +270,10 @@ class ProductController extends Controller
         }
 
         $product->update($request->all());
+
+        if($request->has('categories')) {
+            $product->categories()->sync($request->input('categories'));
+        }
 
         Session::flash('message', 'Produk berhasil di update');
 
