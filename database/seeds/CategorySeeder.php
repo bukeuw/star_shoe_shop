@@ -19,5 +19,35 @@ class CategorySeeder extends Seeder
         Category::create([
         	'title' => 'Sepatu'
         ]);
+
+        Category::create([
+            'title' => 'Sandal Pria',
+            'parent_id' => 1
+        ]);
+
+        Category::create([
+            'title' => 'Sandal Wanita',
+            'parent_id' => 1
+        ]);
+
+        Category::create([
+            'title' => 'Sandal Anak-anak',
+            'parent_id' => 1
+        ]);
+
+        Category::create([
+            'title' => 'Sepatu Pria',
+            'parent_id' => 2
+        ]);
+
+        Category::create([
+            'title' => 'Sepatu Wanita',
+            'parent_id' => 2
+        ]);
+
+        Category::create([
+            'title' => 'Sepatu Anak-anak',
+            'parent_id' => 2
+        ]);
     }
 }
