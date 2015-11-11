@@ -81,30 +81,19 @@ body,
 /* Banner */
 
 .tkstar-banner {
-	background-image: url("/assets/img/banner_tokostar2.png");
+	background-image: url("/assets/img/banner_tokostar3.png");
 	background-repeat: no-repeat;
-	-webkit-background-size: cover;
-	background-size: cover;
+	-webkit-background-size: contain;
+	background-size: contain;
 }
 
-.tkstar-banner h1,
-.tkstar-banner p {
-	display: inline-block;
+.tkstar-banner h1 {
+	display: block;
+	margin: auto;
 	padding: 6px 9px 8px 9px;
-	width: initial;
+	text-align: center;
 	color: #fff;
-	background-color: rgba(3, 3, 3, 0.8);
-}
-
-.tkstar-banner .btn {
-	color: #21a082;
-	background-color: rgba(3, 3, 3, 0.8);
-	border-radius: 0;
-}
-
-.tkstar-banner .btn:hover {
-	color: #fff;
-	background-color: #21a082;
+	background-color: rgba(3, 3, 3, 0.3);
 }
 
 /*

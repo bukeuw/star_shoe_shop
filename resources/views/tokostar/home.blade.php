@@ -9,9 +9,8 @@
 
 		<div class="col-sm-12">
 			<div class="jumbotron tkstar-banner">
-				<h1>Selamat datang di tokostar.com</h1>
-				<p>Kami menyediakan berbagai jenis sendal dan sepatu berkualitas.</p> <br />
-				<a href="/product" class="btn">Lihat semua produk</a>
+				<h1><span>SELAMAT DATANG DI</span></h1>
+				<h1><span>TOKO STAR</span></h1>
 			</div>
 		</div>
 
