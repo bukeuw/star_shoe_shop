@@ -28,8 +28,7 @@ class CartController extends Controller
      */
     protected function getUserCart()
     {
-        $userCart = Cart::firstOrCreate([
-                        'user_id' => Auth::user()->id]);
+        $userCart = Cart::firstOrCreate([ 'user_id' => Auth::user()->id ]);
 
         return $userCart;
     }
