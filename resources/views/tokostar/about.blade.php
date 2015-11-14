@@ -12,7 +12,11 @@
 
 			<p>Toko Star merupakan industri kecil menengah di kota Pontianak yang beralamat di Jalan Komyos Sudarso gg Durian 3 No.55 Pontianak. Toko Star didirikan pada tahun 2000, dimana usaha ini didirikan oleh Bapak Ali. Pada awalnya usaha ini hanya menjual beberapa jenis sandal dan sepatu dengan stok yang jumlahnya relatif sedikit dan pangsa pasar hanya berada pada lingkungan dalam kota. Penjualan pada awalnya hanya menggunakan 1 kendaraan mobil box pribadi Bapak Ali.</p>
 
-			<p>Saat ini, proses operasional penjualan sandal dan sepatu telah menggunakan 2 kendaraan mobil box pribadi Bapak Ali dengan jalur dan tujuan yang berbeda. Dimana proses penjualan dilakukan dengan 2 cara, yaitu dimana mobil pertama bapak Ali sendiri yang melakukan penjualan sales kanvas sandal dan sepatu ketoko-toko yang ada di luar kota  dengan ditemani 1 karyawan gudang. Sedangkan mobil kedua oleh orang kepercayaan Bapak Ali serta ditemani satu karyawan gudang.</p>
+			<p>Saat ini, proses operasional penjualan sandal dan sepatu telah menggunakan 2 kendaraan mobil box pribadi Bapak Ali dengan jalur dan tujuan yang berbeda. Dimana proses penjualan dilakukan dengan 2 cara, yaitu dimana mobil pertama bapak Ali sendiri yang melakukan penjualan sales kanvas sandal dan sepatu ketoko-toko yang ada di luar kota  dengan ditemani 1 karyawan gudang. Sedangkan mobil kedua oleh orang kepercayaan Bapak Ali serta ditemani satu karyawan gudang.</p><br><br>
+
+			<p><span class="col-xs-3">Alamat Toko</span> Jl. Komyos Sudarso Gg Durian 3 No.55, Pontianak</p>
+			<p><span class="col-xs-3">No Telepon</span> +6285750696557</p>
+			<p><span class="col-xs-3">Email</span> danynindou@ymail.com</p>
 		</article>
 	</div>
 
