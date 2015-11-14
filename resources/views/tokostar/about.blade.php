@@ -7,7 +7,7 @@
 		<h1>Tentang Kami</h1>
 	</div>
 	<div class="col-md-9">
-		<article>
+		<article class="text-justify">
 			<p>Toko Star adalah perusahaan yang bergerak di bidang penjualan sandal dan sepatu secara grosir. Penjualan dilakukan dengan cara sales kanvas di dalam kota dan di daerah luar kota mulai dari kabupaten Bengkayang, Kapuas Hulu, Ketapang, Landak, Melawi, Sambas, Sekadau dan Sintang. Penjualan dengan cara sales kanvas dilakukan sebanyak tiga (3) kali dalam sebulan.</p>
 
 			<p>Toko Star merupakan industri kecil menengah di kota Pontianak yang beralamat di Jalan Komyos Sudarso gg Durian 3 No.55 Pontianak. Toko Star didirikan pada tahun 2000, dimana usaha ini didirikan oleh Bapak Ali. Pada awalnya usaha ini hanya menjual beberapa jenis sandal dan sepatu dengan stok yang jumlahnya relatif sedikit dan pangsa pasar hanya berada pada lingkungan dalam kota. Penjualan pada awalnya hanya menggunakan 1 kendaraan mobil box pribadi Bapak Ali.</p>
