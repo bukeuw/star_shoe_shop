@@ -275,6 +275,11 @@ class ProductController extends Controller
             $product->categories()->sync($request->input('categories'));
         }
 
+        if($request->has('product_img')) {
+            $this->handleUploadedImage($request);
+            $product->update(['img_name' => $request->input('name')]);
+        }
+
         Session::flash('message', 'Produk berhasil di update');
 
         return redirect('/admin/product');
