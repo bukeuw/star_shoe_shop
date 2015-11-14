@@ -5,24 +5,26 @@
 @section('page-content')
 
 	<h1 class="content-header">Daftar Pesanan</h1>
-	@if (count($orders) > 0)
+	@if (count($orderItems) > 0)
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>Tanggal</th>
-						<th>Nama</th>
-						<th>Total Bayar</th>
-						<th>Metode Pembayaran</th>
-						<th>Status</th>
+						<th>Pemesan</th>
+						<th>Nama Barang</th>
+						<th>Jumlah</th>
+						<th>Terpenuhi</th>
 					</tr>
 				</thead>
 				<tbody>
-				@foreach ($orders as $order)
+				@foreach ($orderItems as $item)
 					<tr>
-						<td>{{ $order->created_at->format('j F Y') }}</td>
-						<td>{{ $order->user->name }}</td>
-						<td>Rp. {{ $order->total_paid }}</td>
+						<td>{{ $item->order->created_at->format('j F Y') }}</td>
+						<td>{{ $item->order->user->name }}</td>
+						<td>{{ $item->product->name }}</td>
+						<td>{{ $item->product->qty }}</td>
+						<td>{{ $item->confirmed ? 'Ya' : 'Belum' }}</td>
 					</tr>
 				@endforeach
 				</tbody>
@@ -31,5 +33,5 @@
 	@else
 		<p>Tidak ada data transaksi</p>
 	@endif
-	{!! $orders->render() !!}
+	{!! $orderItems->render() !!}
 @endsection

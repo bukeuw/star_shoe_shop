@@ -1,6 +1,6 @@
 @extends('layouts.userpage')
 
-@section('title', 'Home')
+@section('title', 'Profile Member')
 
 @section('page-content')
 	<div class="row">

@@ -93,10 +93,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::paginate(20);
+        $orderItems = OrderItem::paginate(20);
 
-        return view('tokostar.admin.orderlist')
-            ->with('orders', $orders);
+        return view('tokostar.admin.orderlist', compact('orderItems'));
     }
 
     /**
