@@ -25,10 +25,10 @@
 						<a href="/admin/category">Kategori Produk</a>
 					</li>
 					<li class="visible-xs">
-						<a href="/admin/messages">Pesan</a>
+						<a href="/admin/messages">Messages</a>
 					</li>
 					<li class="visible-xs">
-						<a href="/admin/order">Daftar Pesanan</a>
+						<a href="/admin/order">Order List</a>
 					</li>
 					<li class="visible-xs">
 						<a href="/admin/invoice">Invoice</a>
