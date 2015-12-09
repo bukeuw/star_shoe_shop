@@ -1,6 +1,6 @@
 @extends('layouts.userpage')
 
-@section('title', 'Daftar Transaksi')
+@section('title', 'Detail Transaksi')
 
 @section('page-content')
 

@@ -1,6 +1,6 @@
 @extends('layouts.adminpage')
 
-@section('title', 'Daftar Produk')
+@section('title', 'Daftar Kategori')
 
 @section('page-content')
 

@@ -4,7 +4,7 @@
 
 @section('page-content')
 
-	<h1 class="content-header">Produk</h1>
+	<h1 class="content-header">Detil Transaksi</h1>
 	@if (count($transaction->details) > 0)
 		<p>Nama: {{ $transaction->user->name }}</p>
 		<p>Tgl Transaksi: {{ $transaction->created_at->format('j F Y') }}</p>
