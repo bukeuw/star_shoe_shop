@@ -172,6 +172,14 @@ class MemberController extends Controller
         return view('tokostar.transactiondetail', compact('transaction'));
     }
 
+    public function downloadTransactionPDF($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        $pdf = PDF::loadView('pdf.invoice', compact('transaction'));
+
+        return $pdf->download('invoice.pdf');
+    }
+
     /**
      * Display a listing of the resource.
      *
