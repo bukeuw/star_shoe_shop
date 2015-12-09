@@ -22,10 +22,12 @@
 						<td>Rp. {{ ($detail->product->price * $detail->quantity) }}</td>
 					</tr>
 				@endforeach
-				<td>Total Bayar</td>
-				<td colspan="3">
-					<p class="text-right">Rp. {{ $transaction->total }}</p>
-				</td>
+				<tr>
+					<td>Total Bayar</td>
+					<td colspan="3">
+						<p class="text-right">Rp. {{ $transaction->total }}</p>
+					</td>
+				</tr>
 			</table>
 		@endif
 	</div>
