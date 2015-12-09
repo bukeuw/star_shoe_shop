@@ -7,28 +7,26 @@
 			<p>Nama: {{ Auth::user()->name }}</p>
 			<p>Tgl Transaksi: {{ $transaction->created_at->format('j F Y') }}</p>
 			<p>Metode Pembayaran: {{ $transaction->payment_method }}</p>
-			<div class="table-responsive">
-				<table class="table table-hover">
+			<table>
+				<tr>
+					<td>Nama Barang</td>
+					<td>Jumlah</td>
+					<td>Harga Satuan</td>
+					<td>Subtotal</td>
+				</tr>
+				@foreach ($transaction->details as $detail)
 					<tr>
-						<td>Nama Barang</td>
-						<td>Jumlah</td>
-						<td>Harga Satuan</td>
-						<td>Subtotal</td>
+						<td>{{ $detail->product->name }}</td>
+						<td>{{ $detail->quantity }} {{ $detail->product->unit }}</td>
+						<td>{{ $detail->product->price }}</td>
+						<td>Rp. {{ ($detail->product->price * $detail->quantity) }}</td>
 					</tr>
-					@foreach ($transaction->details as $detail)
-						<tr>
-							<td>{{ $detail->product->name }}</td>
-							<td>{{ $detail->quantity }} {{ $detail->product->unit }}</td>
-							<td>{{ $detail->product->price }}</td>
-							<td>Rp. {{ ($detail->product->price * $detail->quantity) }}</td>
-						</tr>
-					@endforeach
-					<td>Total Bayar</td>
-					<td colspan="3">
-						<p class="text-right">Rp. {{ $transaction->total }}</p>
-					</td>
-				</table>
-			</div>
+				@endforeach
+				<td>Total Bayar</td>
+				<td colspan="3">
+					<p class="text-right">Rp. {{ $transaction->total }}</p>
+				</td>
+			</table>
 		@endif
 	</div>
 @endsection
