@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.5.9",
+        "php": "^5.5.9",
         "ext-sqlite3": "*",
         "ext-pdo_sqlite": "*",
         "ext-gd": "*",
