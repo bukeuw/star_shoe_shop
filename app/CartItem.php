@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CartItem extends Model
 {
 	protected $fillable = ['cart_id', 'product_id', 'qty'];
+	protected $dates = ['created_at'];
 
     public function cart()
     {
