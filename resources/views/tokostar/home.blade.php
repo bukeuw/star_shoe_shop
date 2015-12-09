@@ -14,6 +14,9 @@
 			</div>
 		</div>
 
+		<div class="col-sm-12 page header">
+			<h1>Produk Terbaru</h1>
+		</div>
 		<div class="col-md-9">
 			<div class="row products">
 

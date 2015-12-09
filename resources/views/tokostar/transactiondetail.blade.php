@@ -6,11 +6,14 @@
 
 	@include('layouts.partials.messagebag')
 
-	<h1 class="content-header">Produk</h1>
+	<h1 class="content-header">Transaction Detail</h1>
 	@if (count($transaction->details) > 0)
 		<p>Nama: {{ Auth::user()->name }}</p>
 		<p>Tgl Transaksi: {{ $transaction->created_at->format('j F Y') }}</p>
 		<p>Metode Pembayaran: {{ $transaction->payment_method }}</p>
+		<a href="/member/transaction/{{ $transaction->id }}/download" class="btn btn-default">
+			<i class="fa fa-file-pdf-o"></i> Download as PDF
+		</a>
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
