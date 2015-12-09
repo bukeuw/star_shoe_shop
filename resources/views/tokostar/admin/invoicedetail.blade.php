@@ -9,6 +9,9 @@
 		<p>Nama: {{ $transaction->user->name }}</p>
 		<p>Tgl Transaksi: {{ $transaction->created_at->format('j F Y') }}</p>
 		<p>Metode Pembayaran: {{ $transaction->payment_method }}</p>
+		<a href="/admin/invoice/{{ $transaction->id }}/download" class="btn btn-default">
+			<i class="fa fa-file-pdf-o"></i> Download as PDF
+		</a>
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>

@@ -256,6 +256,14 @@ class AdminController extends Controller
         return view('tokostar.admin.invoicedetail', compact('transaction'));
     }
 
+    public function downloadTransactionPDF($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        $pdf = \PDF::loadView('tokostar.transactionreceipt', compact('transaction'));
+
+        return $pdf->download('invoice.pdf');
+    }
+
     public function getAdminList()
     {
         $admins = User::where('is_admin', true)->get();
