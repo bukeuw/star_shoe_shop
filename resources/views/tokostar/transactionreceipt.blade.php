@@ -9,15 +9,12 @@
 			<p>Metode Pembayaran: {{ $transaction->payment_method }}</p>
 			<div class="table-responsive">
 				<table class="table table-hover">
-					<thead>
-						<tr>
-							<td>Nama Barang</td>
-							<td>Jumlah</td>
-							<td>Harga Satuan</td>
-							<td>Subtotal</td>
-						</tr>
-					</thead>
-					<tbody>
+					<tr>
+						<td>Nama Barang</td>
+						<td>Jumlah</td>
+						<td>Harga Satuan</td>
+						<td>Subtotal</td>
+					</tr>
 					@foreach ($transaction->details as $detail)
 						<tr>
 							<td>{{ $detail->product->name }}</td>
@@ -26,13 +23,10 @@
 							<td>Rp. {{ ($detail->product->price * $detail->quantity) }}</td>
 						</tr>
 					@endforeach
-					</tbody>
-					<tfoot>
-						<td>Total Bayar</td>
-						<td colspan="3">
-							<p class="text-right">Rp. {{ $transaction->total }}</p>
-						</td>
-					</tfoot>
+					<td>Total Bayar</td>
+					<td colspan="3">
+						<p class="text-right">Rp. {{ $transaction->total }}</p>
+					</td>
 				</table>
 			</div>
 		@endif
