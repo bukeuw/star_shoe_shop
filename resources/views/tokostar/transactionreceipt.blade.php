@@ -4,7 +4,7 @@
 	<div class="container-fluid">
 		<h1 class="content-header">Transaction Detail</h1>
 		@if (count($transaction->details) > 0)
-			<p>Nama: {{ Auth::user()->name }}</p>
+			<p>Nama: {{ $transaction->user->name }}</p>
 			<p>Tgl Transaksi: {{ $transaction->created_at->format('j F Y') }}</p>
 			<p>Metode Pembayaran: {{ $transaction->payment_method }}</p>
 			<table class="table">
