@@ -11,10 +11,10 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>Nama Barang</th>
-							<th>Jumlah</th>
-							<th>Harga Satuan</th>
-							<th>Subtotal</th>
+							<td>Nama Barang</td>
+							<td>Jumlah</td>
+							<td>Harga Satuan</td>
+							<td>Subtotal</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -28,10 +28,10 @@
 					@endforeach
 					</tbody>
 					<tfoot>
-						<th>Total Bayar</th>
-						<th colspan="3">
+						<td>Total Bayar</td>
+						<td colspan="3">
 							<p class="text-right">Rp. {{ $transaction->total }}</p>
-						</th>
+						</td>
 					</tfoot>
 				</table>
 			</div>
