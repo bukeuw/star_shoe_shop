@@ -13,11 +13,21 @@ class CreateCategoryPivotTable extends Migration
     public function up()
     {
         Schema::create('product_category', function (Blueprint $table) {
-            $table->integer('product_id')->index();
-            $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
+            $table->integer('product_id')
+                ->unsigned()
+                ->index();
+            $table->integer('category_id')
+                ->unsigned()
+                ->index();
 
-            $table->integer('category_id')->index();
-            $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
+            $table->foreign('product_id')
+                ->references('id')
+                ->on('product')
+                ->onDelete('cascade');
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('category')
+                ->onDelete('cascade');
         });
     }
 
