@@ -7,7 +7,7 @@
 			<p>Nama: {{ Auth::user()->name }}</p>
 			<p>Tgl Transaksi: {{ $transaction->created_at->format('j F Y') }}</p>
 			<p>Metode Pembayaran: {{ $transaction->payment_method }}</p>
-			<table>
+			<table class="table">
 				<tr>
 					<td>Nama Barang</td>
 					<td>Jumlah</td>
